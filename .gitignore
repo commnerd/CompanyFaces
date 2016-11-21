@@ -6,9 +6,11 @@ capybara-*.html
 /db/*.sqlite3
 /db/*.sqlite3-journal
 /public/system
+/public/build
 /coverage/
 /spec/tmp
 **.orig
+**.map
 rerun.txt
 pickle-email-*.html
 
@@ -33,3 +35,11 @@ bower.json
 
 # Ignore pow environment settings
 .powenv
+
+/node_modules
+/public/storage
+/vendor
+/.idea
+Homestead.json
+Homestead.yaml
+.env
