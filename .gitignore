@@ -42,4 +42,5 @@ bower.json
 /.idea
 Homestead.json
 Homestead.yaml
+database.sqlite
 .env
