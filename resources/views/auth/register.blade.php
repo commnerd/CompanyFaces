@@ -38,6 +38,20 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('position') ? ' has-error' : '' }}">
+                            <label for="position" class="col-md-4 control-label">Position</label>
+
+                            <div class="col-md-6">
+                                <input id="position" type="text" class="form-control" name="position" value="{{ old('position') }}" required>
+
+                                @if ($errors->has('position'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('position') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             <label for="password" class="col-md-4 control-label">Password</label>
 
@@ -57,6 +71,20 @@
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('biography') ? ' has-error' : '' }}">
+                            <label for="biography" class="col-md-4 control-label">Biography</label>
+
+                            <div class="col-md-6">
+                                <textarea id="biography" type="text" class="form-control" name="biography" required>{{ old('biography') }}</textarea>
+
+                                @if ($errors->has('biography'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('biography') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 

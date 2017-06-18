@@ -13,6 +13,7 @@
 
 Auth::routes();
 
-Route::get('/', 'HomeController@index');
+Route::get('/', 'HomeController@index')->name('search');
+Route::get('/admin', 'AdminController@index')->name('adminIndex');
 
 // Route::get('/', 'Auth\LoginController@showLoginForm');

@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->integer('supervisor_user_id')->unsigned()->nullable();
             $table->foreign('supervisor_user_id')->references('id')->on('users');
-            $table->boolean('superuser');
+            $table->boolean('superuser')->default(false);
             $table->string('name');
             $table->string('position');
             $table->string('email')->unique();
