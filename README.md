@@ -1,6 +1,9 @@
 # CompanyFaces
 A company familiarization application: learn who you work with...
 
+#Additional libraries
+Image intervention library: http://image.intervention.io/
+
 # Laravel PHP Framework
 
 [![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
