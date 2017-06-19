@@ -38,6 +38,7 @@ bower.json
 
 /node_modules
 /public/storage
+/public/js/app.js
 /vendor
 /.idea
 Homestead.json

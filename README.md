@@ -3,6 +3,7 @@ A company familiarization application: learn who you work with...
 
 #Additional libraries
 Image intervention library: http://image.intervention.io/
+imgAreaSelect JQuery tool: http://odyniec.net/projects/imgareaselect/, https://github.com/odyniec/imgareaselect
 
 # Laravel PHP Framework
 
