@@ -8,6 +8,7 @@ window._ = require('lodash');
  */
 
 window.$ = window.jQuery = require('jquery');
+window.cropper = require('cropperjs');
 require('bootstrap-sass');
 
 /**
