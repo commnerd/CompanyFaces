@@ -1,16 +1,16 @@
-<form class="form-horizontal" role="form" method="POST" enctype="multipart/form-data" action="{{ route($route) }}">
+<form class="form-horizontal" role="form" method="POST" action="{{ route($route) }}" enctype="multipart/form-data">
     {{ csrf_field() }}
     <input type="hidden" name="supervisor_user_id" value="0">
 
-    <div class="form-group{{ $errors->has('image') ? ' has-error' : '' }}">
-        <label for="image" class="col-md-4 control-label">Profile Picture</label>
+    <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+        <label for="photo" class="col-md-4 control-label">Photo</label>
 
         <div class="col-md-6">
-            <input id="image" type="file" class="form-control" name="image">
+            <input id="photo" type="file" class="form-control" name="photo" value="{{ old('photo') }}">
 
-            @if ($errors->has('image'))
+            @if ($errors->has('photo'))
                 <span class="help-block">
-                    <strong>{{ $errors->first('image') }}</strong>
+                    <strong>{{ $errors->first('photo') }}</strong>
                 </span>
             @endif
         </div>
@@ -49,7 +49,14 @@
 
         <div class="col-md-6">
             <input id="supervisor" type="text" class="form-control" name="supervisor" value="{{ old('supervisor') }}">
-
+            <ul class="autocomplete-list">
+                <li>
+                    Michael Miller (test)
+                </li>
+                <li>
+                    Michael Miller (Test Engineer)
+                </li>
+            </ul>
             @if ($errors->has('supervisor'))
                 <span class="help-block">
                     <strong>{{ $errors->first('supervisor') }}</strong>

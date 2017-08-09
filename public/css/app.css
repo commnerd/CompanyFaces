@@ -7670,4 +7670,12 @@ button.close {
   }
 }
 
+.autocomplete-list {
+  position: relative;
+  display: block;
+  list-style: none;
+  padding: 0;
+  z-index: 1;
+}
+
 /*# sourceMappingURL=app.css.map */

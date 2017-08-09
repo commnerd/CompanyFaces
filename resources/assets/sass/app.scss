@@ -7,3 +7,12 @@
 
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+// Application
+.autocomplete-list {
+    position: relative;
+    display: block;
+    list-style: none;
+    padding: 0;
+    z-index: 1;
+}
