@@ -7671,11 +7671,17 @@ button.close {
 }
 
 .autocomplete-list {
-  position: relative;
+  position: absolute;
   display: block;
   list-style: none;
   padding: 0;
   z-index: 1;
+  background: white;
+  border: thin solid #ccd0d2;
+  width: 100%;
+  border-radius: "4px";
+  -moz-border-radius: "4px";
+  -webkit-border-radius: "4px";
 }
 
 /*# sourceMappingURL=app.css.map */
