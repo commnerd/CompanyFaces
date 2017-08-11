@@ -25,7 +25,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'superuser', 'password', 'position', 'biography',
+        'name', 'email', 'superuser', 'supervisor', 'password', 'position', 'biography',
     ];
 
     /**
@@ -43,6 +43,7 @@ class User extends Authenticatable
      * @var array
      */
     public static $registrationValidationRules = [
+        'photo' => 'required',
         'name' => 'required|max:255',
         'email' => 'required|email|max:255|unique:users',
         'supervisor' => 'max:255',

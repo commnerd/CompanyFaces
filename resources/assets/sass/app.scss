@@ -14,12 +14,12 @@
 // Application
 .autocomplete-list {
     position: absolute;
-    display: block;
+    display: none;
     list-style: none;
-    padding: 0;
+    padding: 7px;
     z-index: 1;
     background: rgb(255, 255, 255);
     border: thin solid rgb(204, 208, 210);
-    width:100%;
-    @include rounded_corners('4px');
+    width:92%;
+    @include rounded_corners(4px);
 }
