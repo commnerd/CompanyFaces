@@ -20,6 +20,6 @@
     z-index: 1;
     background: rgb(255, 255, 255);
     border: thin solid rgb(204, 208, 210);
-    width:92%;
+    width:calc(100% - 30px);
     @include rounded_corners(4px);
 }

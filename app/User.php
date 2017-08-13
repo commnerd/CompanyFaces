@@ -43,7 +43,7 @@ class User extends Authenticatable
      * @var array
      */
     public static $registrationValidationRules = [
-        'photo' => 'required',
+        'photo' => 'required|image',
         'name' => 'required|max:255',
         'email' => 'required|email|max:255|unique:users',
         'supervisor' => 'max:255',
