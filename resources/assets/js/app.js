@@ -1,4 +1,3 @@
-
 /**
  * First we will load all of this project's JavaScript dependencies which
  * include Vue and Vue Resource. This gives a great starting point for
@@ -18,3 +17,21 @@ Vue.component('example', require('./components/Example.vue'));
 const app = new Vue({
     el: '#app'
 });
+
+/**
+ * Globals
+ */
+var timeoutRef;
+
+$('input[source]').on('keyup', function() {
+    if(timeoutRef) {
+        clearTimeout(timeoutRef);
+    }
+    /*
+    timeoutRef = setTimeout(function() {
+        var val = $(this).val(),
+            src = $(this).attr('source'),
+            autocomplete = $(this).parent().find('.autocomplete-list');
+    }, 250);
+    */
+}).after('<ul class="autocomplete-list"></ul>');
