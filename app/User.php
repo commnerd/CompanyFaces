@@ -93,7 +93,7 @@ class User extends Authenticatable
      */
     public static function parseNameAndPosition(String $string): array {
         if(!preg_match('/(.+)\s\((.+)\)/', $string, $match)) {
-            return ['name' => $match[0]];
+            return ['name' => $string];
         }
         return [
             'name' => $match[1],

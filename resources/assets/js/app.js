@@ -24,14 +24,21 @@ const app = new Vue({
 var timeoutRef;
 
 $('input[source]').on('keyup', function() {
+    var input = this;
     if(timeoutRef) {
         clearTimeout(timeoutRef);
     }
-    /*
     timeoutRef = setTimeout(function() {
-        var val = $(this).val(),
-            src = $(this).attr('source'),
+        var val = { query: $(input).val() };
+            src = $(input).attr('source'),
             autocomplete = $(this).parent().find('.autocomplete-list');
+
+        $.ajax({
+            url: src,
+            method: 'POST',
+            data: val
+        }).done(function(data) {
+            console.log(data);
+        });
     }, 250);
-    */
 }).after('<ul class="autocomplete-list"></ul>');

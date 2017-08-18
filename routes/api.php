@@ -13,8 +13,8 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/api/v1/user', function (Request $request) {
+Route::get('/v1/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:api');
 
-Route::post('/api/v1/users', 'API\UsersController@search')->name('searchUsers');
+Route::post('/v1/users/search', 'API\UsersController@search')->name('searchUsers');
