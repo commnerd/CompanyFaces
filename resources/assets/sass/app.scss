@@ -11,15 +11,17 @@
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
+// Jquery UI
+@import 'node_modules/jquery-ui/themes/base/base';
+@import 'node_modules/jquery-ui/themes/base/theme';
+@import 'node_modules/jquery-ui/themes/base/autocomplete';
+
 // Application
-.autocomplete-list {
-    position: absolute;
-    display: none;
+.ui-autocomplete {
     list-style: none;
     padding: 7px;
     z-index: 1;
     background: rgb(255, 255, 255);
     border: thin solid rgb(204, 208, 210);
-    width:calc(100% - 30px);
     @include rounded_corners(4px);
 }

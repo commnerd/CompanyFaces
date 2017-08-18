@@ -21,24 +21,39 @@ const app = new Vue({
 /**
  * Globals
  */
-var timeoutRef;
 
-$('input[source]').on('keyup', function() {
-    var input = this;
+$('input[source]').each(function(index, input) {
+    $(input).autocomplete({
+        source: $(input).attr('source')
+    });
+});
+
+//var timeoutRef;
+
+
+/*
+$('input[source]').on('keyup', function(event) {
+    var val = { query: $(this).val() },
+        src = $(this).attr('source'),
+        autocomplete = $(this).parent().find('.autocomplete-list');
     if(timeoutRef) {
         clearTimeout(timeoutRef);
     }
+    $(autocomplete).css('display', 'none').empty();
     timeoutRef = setTimeout(function() {
-        var val = { query: $(input).val() };
-            src = $(input).attr('source'),
-            autocomplete = $(this).parent().find('.autocomplete-list');
-
         $.ajax({
             url: src,
             method: 'POST',
             data: val
         }).done(function(data) {
-            console.log(data);
+            if(data.length > 0) {
+                console.log(data.length);
+                $(data).each(function(index, user) {
+                    $(autocomplete).append('<li>'+user.supervisorLabel+'</li>');
+                });
+                $(autocomplete).css('display', 'block');
+            }
         });
     }, 250);
 }).after('<ul class="autocomplete-list"></ul>');
+*/

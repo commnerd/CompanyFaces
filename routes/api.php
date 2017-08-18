@@ -17,4 +17,4 @@ Route::get('/v1/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:api');
 
-Route::post('/v1/users/search', 'API\UsersController@search')->name('searchUsers');
+Route::get('/v1/users/search', 'API\UsersController@search')->name('searchUsers');

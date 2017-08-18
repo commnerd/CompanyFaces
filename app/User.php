@@ -11,6 +11,13 @@ class User extends Authenticatable
     use Notifiable;
 
     /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = ['supervisorLabel'];
+
+    /**
      * The attributes that should be cast to native types.
      *
      * @var array
@@ -34,7 +41,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token', 'superuser',
     ];
 
     /**
@@ -59,30 +66,36 @@ class User extends Authenticatable
     }
 
     /**
+     * Supervisor attribute
+     *
+     * @return String $supervisorLabel
+     */
+    public function getSupervisorLabelAttribute(): String {
+        return User::formatSupervisorLabel($this);
+    }
+
+    /**
      * Get supervisor from string
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param  String $string Input to determine supervisor
-     * @return User           User ID
+     * @param  String $string Supervisor Label used to determine user
+     * @return array           Users
      */
-    public static function getUserFromString(String $string): User {
+    public static function getUsersFromSupervisorLabel(String $string): array {
         $nameAndPosition = ['name' => $string];
         try {
-            $nameAndPosition = User::parseNameAndPosition($string);
+            $nameAndPosition = User::parseSupervisorLabel($string);
         }
         catch(\Exception $e) {
             // Do nothing
         }
 
         $usersQuery = User::where('name', 'like', '%'.$nameAndPosition['name'].'%');
+        if(isset($nameAndPosition['position'])) {
+            return $usersQuery->where('position', $nameAndPosition['position']);
+        }
         $users = $usersQuery->get();
-        if(sizeof($users) > 1) {
-            return $usersQuery->where('position', $nameAndPosition['position'])->first();
-        }
-        if(sizeof($users) < 1) {
-            throw \Exception("User not found.");
-        }
-        return $users[0];
+        return $users->toArray();
     }
 
     /**
@@ -91,7 +104,7 @@ class User extends Authenticatable
      * @param String $string String to parse
      * @return array         Isolated name and position elements
      */
-    public static function parseNameAndPosition(String $string): array {
+    public static function parseSupervisorLabel(String $string): array {
         if(!preg_match('/(.+)\s\((.+)\)/', $string, $match)) {
             return ['name' => $string];
         }
@@ -102,13 +115,23 @@ class User extends Authenticatable
     }
 
     /**
-     * Transform ID to name and position string
+     * Transform ID to supervisor label
      *
-     * @param int $id Id to get name/position
-     * @return String Name and position
+     * @param int $id User ID to transform into supervisor label
+     * @return String Supervisor label
      */
-    public static function idToNameAndPosition(int $id): String {
+    public static function idToSupervisorLabel(int $id): String {
         $user = User::findOrFail($id);
+        return User::formatSupervisorLabel($user);
+    }
+
+    /**
+     * Format supervisor label
+     *
+     * @param User $user User to format
+     * @return String Name and Position
+     */
+    public static function formatSupervisorLabel(User $user) {
         return "$user->name ($user->position)";
     }
 }

@@ -9,9 +9,7 @@ use \App\User;
 class UsersController extends Controller
 {
     public function search(Request $request) {
-        $query = User::parseNameAndPosition($request->input('query'));
-        dd($query);
-        $users = User::all();
-        return response()->json($users);
+        $users = User::getUsersFromSupervisorLabel($request->input('term'));
+        return response()->json(array_map(function($user) { return $user['supervisorLabel']; }, $users));
     }
 }
