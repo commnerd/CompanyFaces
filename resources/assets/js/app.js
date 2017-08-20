@@ -28,32 +28,8 @@ $('input[source]').each(function(index, input) {
     });
 });
 
-//var timeoutRef;
-
-
-/*
-$('input[source]').on('keyup', function(event) {
-    var val = { query: $(this).val() },
-        src = $(this).attr('source'),
-        autocomplete = $(this).parent().find('.autocomplete-list');
-    if(timeoutRef) {
-        clearTimeout(timeoutRef);
+$('input[name="terms"]').on('keyup', function(event) {
+    if(event.keyCode == 13) {
+        $('.search-form').submit();
     }
-    $(autocomplete).css('display', 'none').empty();
-    timeoutRef = setTimeout(function() {
-        $.ajax({
-            url: src,
-            method: 'POST',
-            data: val
-        }).done(function(data) {
-            if(data.length > 0) {
-                console.log(data.length);
-                $(data).each(function(index, user) {
-                    $(autocomplete).append('<li>'+user.supervisorLabel+'</li>');
-                });
-                $(autocomplete).css('display', 'block');
-            }
-        });
-    }, 250);
-}).after('<ul class="autocomplete-list"></ul>');
-*/
+});

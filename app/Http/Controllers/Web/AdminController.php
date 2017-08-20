@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Web;
 
 use Illuminate\Http\Request;
 
-class AdminController extends Controller
+class AdminController extends WebController
 {
     /**
      * Show the admin dashboard.

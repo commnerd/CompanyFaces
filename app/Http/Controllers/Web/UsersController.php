@@ -3,9 +3,8 @@
 namespace App\Http\Controllers\Web;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
-class UsersController extends Controller
+class UsersController extends WebController
 {
     /**
      * Display a listing of the resource.

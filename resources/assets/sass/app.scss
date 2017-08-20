@@ -16,6 +16,10 @@
 @import 'node_modules/jquery-ui/themes/base/theme';
 @import 'node_modules/jquery-ui/themes/base/autocomplete';
 
+.ui-helper-hidden-accessible {
+    display:none;
+}
+
 // Application
 .ui-autocomplete {
     list-style: none;

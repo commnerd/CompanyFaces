@@ -2,14 +2,19 @@
 
 namespace App\Http\Controllers\API;
 
-use \App\Http\Controllers\Controller;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use \App\User;
+use App\User;
 
 class UsersController extends Controller
 {
-    public function search(Request $request) {
+    public function search(Request $request): JsonResponse {
         $users = User::getUsersFromSupervisorLabel($request->input('term'));
-        return response()->json(array_map(function($user) { return $user['supervisorLabel']; }, $users));
+        $userList = [];
+        foreach($users as $user) {
+            $userList[] = $user['supervisorLabel'];
+        }
+        return response()->json($userList);
     }
 }

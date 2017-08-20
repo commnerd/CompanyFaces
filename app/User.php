@@ -3,8 +3,9 @@
 namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use \Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Collection;
 
 class User extends Authenticatable
 {
@@ -78,10 +79,10 @@ class User extends Authenticatable
      * Get supervisor from string
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param  String $string Supervisor Label used to determine user
-     * @return array           Users
+     * @param  String $string                       Supervisor Label used to determine user
+     * @return \Illuminate\Support\Collection       Users
      */
-    public static function getUsersFromSupervisorLabel(String $string): array {
+    public static function getUsersFromSupervisorLabel(String $string): Collection {
         $nameAndPosition = ['name' => $string];
         try {
             $nameAndPosition = User::parseSupervisorLabel($string);
@@ -92,10 +93,10 @@ class User extends Authenticatable
 
         $usersQuery = User::where('name', 'like', '%'.$nameAndPosition['name'].'%');
         if(isset($nameAndPosition['position'])) {
-            return $usersQuery->where('position', $nameAndPosition['position']);
+            $usersQuery = $usersQuery->where('position', $nameAndPosition['position']);
         }
         $users = $usersQuery->get();
-        return $users->toArray();
+        return $users;
     }
 
     /**

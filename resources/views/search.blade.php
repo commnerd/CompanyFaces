@@ -7,17 +7,19 @@
     @endfor
 </div>
 <div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Search</div>
+    <form class="search-form" action="{{ route('search') }}" method="get">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Search</div>
 
-                <div class="panel-body">
-                    <input text="text" name="terms" class="form-control" placeholder="Search" />
+                    <div class="panel-body">
+                        <input text="text" name="terms" class="form-control" placeholder="Search" source="{{ route('searchUsers') }}" />
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </form>
 </div>
 
 @endsection

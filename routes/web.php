@@ -13,8 +13,9 @@
 
 Auth::routes();
 
-Route::get('/', 'HomeController@index')->name('search');
-Route::get('/admin', 'AdminController@index')->name('adminIndex');
+Route::get('/', 'Web\HomeController@index')->name('home');
+Route::get('/admin', 'Web\AdminController@index')->name('admin');
+Route::get('/search', 'Web\SearchController@list')->name('search');
 
 Route::resource('/users', 'Web\UsersController');
 

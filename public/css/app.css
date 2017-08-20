@@ -8712,6 +8712,10 @@ a.ui-button:active,
   cursor: default;
 }
 
+.ui-helper-hidden-accessible {
+  display: none;
+}
+
 .ui-autocomplete {
   list-style: none;
   padding: 7px;
