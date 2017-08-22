@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Collection;
@@ -61,9 +62,29 @@ class User extends Authenticatable
 
     /**
      * Get this user's company
+     *
+     * @return HasOne Company
      */
-    public function company() {
-        return $this->hasOne('App\Company');
+    public function company(): HasOne {
+        return $this->hasOne(Company::class);
+    }
+
+    /**
+     * Get user's photo
+     *
+     * @return HasOne Image
+     */
+    public function photo(): HasOne {
+        return $this->hasOne(Image::class, 'id');
+    }
+
+    /**
+     * Get user's supervisor
+     *
+     * @return HasOne Supervisor
+     */
+    public function supervisor(): HasOne {
+        return $this->hasOne(User::class, 'supervisor_user_id');
     }
 
     /**
@@ -127,12 +148,26 @@ class User extends Authenticatable
     }
 
     /**
+     * Transform supervisor label to ID
+     *
+     * @param String $label Label for supervisor
+     * @return int          ID of supervisor
+     */
+    public static function supervisorLabelToId(String $label): int {
+        $users = User::getUsersFromSupervisorLabel($label);
+        if($users->count() > 1) {
+            App::abort(500, 'Something went wrong.');
+        }
+        return $users->first()->id;
+    }
+
+    /**
      * Format supervisor label
      *
      * @param User $user User to format
      * @return String Name and Position
      */
-    public static function formatSupervisorLabel(User $user) {
+    public static function formatSupervisorLabel(User $user): String {
         return "$user->name ($user->position)";
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAddressableTable extends Migration
+class CreateImageVariantsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,10 @@ class CreateAddressableTable extends Migration
      */
     public function up()
     {
-        Schema::create('addressable', function (Blueprint $table) {
+        Schema::create('image_variants', function (Blueprint $table) {
             $table->increments('id');
-
-            $table->integer('address_id')->unsigned();
-            $table->foreign('address_id')->references('id')->on('addresses')->onDelete('cascade');
-
-            $table->integer('addressable_id')->unsigned();
-            $table->string('addressable_type');
+            $table->integer('image_id');
+            $table->foreign('image_id')->references('id')->on('images')->onDelete('cascade');
 
             $table->timestamps();
         });
@@ -33,6 +29,6 @@ class CreateAddressableTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('addressable');
+        Schema::dropIfExists('image_variants');
     }
 }

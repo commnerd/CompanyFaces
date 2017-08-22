@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\User;
 
 class UsersTableSeeder extends Seeder
 {
@@ -13,6 +14,7 @@ class UsersTableSeeder extends Seeder
     {
         $user = new User();
         $user->supervisor_user_id = null;
+        $user->image_id = 1;
         $user->superuser = true;
         $user->name = 'Michael Miller';
         $user->position = 'Application Creator';

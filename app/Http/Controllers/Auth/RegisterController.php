@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
-use App\Image;
-use Validator;
-use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Http\Controllers\Controller;
+use App\Services\ImageUploadService;
+use Validator;
+use App\Image;
+use App\User;
 
 class RegisterController extends Controller
 {
@@ -44,7 +45,7 @@ class RegisterController extends Controller
      * Get a validator for an incoming registration request.
      *
      * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
+     * @return Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
     {
@@ -57,14 +58,15 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return User
      */
-    protected function create(array $data)
+    protected function create(array $data): User
     {
-        $photo = $data['photo'];
-        dd($photo);
+        if(!ImageUploadService::processImage($data['photo'])) {
+            App::abort(500, "Something went wrong.");
+        }
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'supervisor' => $data['supervisor'],
+            'supervisor_user_id' => User::supervisorLabelToId($data['supervisor']),
             'position' => $data['position'],
             'password' => bcrypt($data['password']),
             'biography' => empty($data['biography']) ? '' : $data['biography'],
