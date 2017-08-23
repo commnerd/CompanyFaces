@@ -16,36 +16,22 @@
 @import 'node_modules/jquery-ui/themes/base/theme';
 @import 'node_modules/jquery-ui/themes/base/autocomplete';
 
-body, #app {
-    min-height: 100vh;
+// Application
+.center {
+    text-align: center !important;
 }
 
-nav {
-    margin: 0;
-}
-
-header h1 {
+.col-xs-12 {
     text-align: center;
-    margin: 0;
 }
 
-header, aside, section, footer {
-    padding: $standard-padding;
-}
-
-aside, section {
-    float: left;
-    ul {
-        padding:0;
-        list-style: none;
-    }
+.lower .email {
+    display: none;
 }
 
 .ui-helper-hidden-accessible {
     display:none;
 }
-
-// Application
 .ui-autocomplete {
     list-style: none;
     padding: 7px;
@@ -53,4 +39,19 @@ aside, section {
     background: rgb(255, 255, 255);
     border: thin solid rgb(204, 208, 210);
     @include rounded_corners(4px);
+}
+
+@media (min-width: $screen-sm-min) {
+    #app>.row {
+        padding: 0 $standard-padding;
+    }
+    .col-xs-12 {
+        text-align: inherit;
+        .upper .email {
+            display: none;
+        }
+        .lower .email {
+            display: block;
+        }
+    }
 }

@@ -2,6 +2,11 @@
 // Body
 $body-bg: #f5f8fa;
 
+// Twitter Bootstrap
+$screen-sm-min: 768px;
+$screen-md-min: 992px;
+$screen-lg-min: 1200px;
+
 // Borders
 $laravel-border-color: darken($body-bg, 10%);
 $list-group-border: $laravel-border-color;

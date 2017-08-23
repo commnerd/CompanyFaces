@@ -8712,30 +8712,16 @@ a.ui-button:active,
   cursor: default;
 }
 
-body, #app {
-  min-height: 100vh;
+.center {
+  text-align: center !important;
 }
 
-nav {
-  margin: 0;
-}
-
-header h1 {
+.col-xs-12 {
   text-align: center;
-  margin: 0;
 }
 
-header, aside, section, footer {
-  padding: 10px;
-}
-
-aside, section {
-  float: left;
-}
-
-aside ul, section ul {
-  padding: 0;
-  list-style: none;
+.lower .email {
+  display: none;
 }
 
 .ui-helper-hidden-accessible {
@@ -8751,6 +8737,21 @@ aside ul, section ul {
   border-radius: 4px;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
+}
+
+@media (min-width: 768px) {
+  #app > .row {
+    padding: 0 10px;
+  }
+  .col-xs-12 {
+    text-align: inherit;
+  }
+  .col-xs-12 .upper .email {
+    display: none;
+  }
+  .col-xs-12 .lower .email {
+    display: block;
+  }
 }
 
 /*# sourceMappingURL=app.css.map */

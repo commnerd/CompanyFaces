@@ -1,31 +1,36 @@
 @extends('layouts.app')
 
 @section('content')
-
-<header>
-    <h1>{{ $user->name }}</h1>
+<header class="row">
+    <div>
+        <h1 class="col-xs-12 center">{{ $user->name }}</h1>
+    </div>
 </header>
-<aside>
-    <img src="{{ Storage::url($user->photo->image_path) }}">
-    <ul>
-        <li><a href="mailto:{{ $user->email }}">{{ $user->email }}</a></li>
-    </ul>
-</aside>
-<section>
-    <ul>
+<section class="row">
+    <div class="col-xs-12 col-sm-3">
+        <img src="{{ Storage::url($user->photo->image_path) }}">
+        @include('partials.social', ['class' => 'upper', 'user' => $user])
+    </div>
+    <div class="col-xs-12 col-sm-9">
     @if($supervisor === NULL)
-        <li>This person is the {{ $user->position }}.</li>
+        <h3>This person is the {{ $user->position }}.</h3>
     @else
-        <li>{{ $supervisor->name }}</li>
+        <div>{{ $supervisor->name }}</div>
         @while(NULL !== ($supervisor = $supervisor->supervisor)):
-            <li>{{ $supervisor->name }}</li>
+            <div>{{ $supervisor->name }}</div>
         @endwhile
     @endif
-
     </ul>
-    <div>
-        <h1>Bio</h1>
-        {{$user->biography}}
+</section>
+<section class="row">
+    <div class="col-xs-12 col-sm-3">
+        @include('partials.social', ['class' => 'lower', 'user' => $user])
+    </div>
+    <div class="col-xs-12 col-sm-9">
+        <h1 class="center">Bio</h1>
+        <div class="biography">
+            {{$user->biography}}
+        </div>
     </div>
 </section>
 <footer>

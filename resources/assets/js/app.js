@@ -33,3 +33,5 @@ $('input[name="terms"]').on('keyup', function(event) {
         $('.search-form').submit();
     }
 });
+
+$('section ul').css('min-height', $('aside').height() + 'px');
