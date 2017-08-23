@@ -8712,6 +8712,32 @@ a.ui-button:active,
   cursor: default;
 }
 
+body, #app {
+  min-height: 100vh;
+}
+
+nav {
+  margin: 0;
+}
+
+header h1 {
+  text-align: center;
+  margin: 0;
+}
+
+header, aside, section, footer {
+  padding: 10px;
+}
+
+aside, section {
+  float: left;
+}
+
+aside ul, section ul {
+  padding: 0;
+  list-style: none;
+}
+
 .ui-helper-hidden-accessible {
   display: none;
 }

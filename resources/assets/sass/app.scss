@@ -16,6 +16,31 @@
 @import 'node_modules/jquery-ui/themes/base/theme';
 @import 'node_modules/jquery-ui/themes/base/autocomplete';
 
+body, #app {
+    min-height: 100vh;
+}
+
+nav {
+    margin: 0;
+}
+
+header h1 {
+    text-align: center;
+    margin: 0;
+}
+
+header, aside, section, footer {
+    padding: $standard-padding;
+}
+
+aside, section {
+    float: left;
+    ul {
+        padding:0;
+        list-style: none;
+    }
+}
+
 .ui-helper-hidden-accessible {
     display:none;
 }
