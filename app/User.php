@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Notifications\Notifiable;
@@ -72,19 +73,19 @@ class User extends Authenticatable
     /**
      * Get user's photo
      *
-     * @return HasOne Image
+     * @return BelongsTo Image
      */
-    public function photo(): HasOne {
-        return $this->hasOne(Image::class, 'id');
+    public function photo(): BelongsTo {
+        return $this->belongsTo(Image::class, 'image_id');
     }
 
     /**
      * Get user's supervisor
      *
-     * @return HasOne Supervisor
+     * @return BelongsTo Supervisor
      */
-    public function supervisor(): HasOne {
-        return $this->hasOne(User::class, 'supervisor_user_id');
+    public function supervisor(): BelongsTo {
+        return $this->belongsTo(User::class, 'supervisor_user_id');
     }
 
     /**

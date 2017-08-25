@@ -12,15 +12,18 @@
         @include('partials.social', ['class' => 'upper', 'user' => $user])
     </div>
     <div class="col-xs-12 col-sm-9">
-    @if($supervisor === NULL)
+    @if($user->supervisor === NULL)
         <h3>This person is the {{ $user->position }}.</h3>
     @else
         <carousel-3d>
-        <slide :index=0>{{ $supervisor->name }}</slide>
-        @for($supervisor = $supervisor->supervisor, $i = 1; NULL !== ($supervisor = $supervisor->supervisor); $i++):
-            <slide :index={{ $i }}>{{ $supervisor->name }}</slide>
-        @endfor
-        <carousel-3d>
+            @for(
+                $i = 0, $supervisor = $user->supervisor;
+                $supervisor !== NULL;
+                $supervisor = $supervisor->supervisor, $i++
+            )
+                <slide index={{ $i }}><img src="{{ Storage::url($supervisor->photo->image_path) }}"></slide>
+            @endfor
+        </carousel-3d>
     @endif
     </ul>
 </section>
