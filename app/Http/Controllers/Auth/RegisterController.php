@@ -60,12 +60,14 @@ class RegisterController extends Controller
      */
     protected function create(array $data): User
     {
-        if(!ImageUploadService::processImage($data['photo'])) {
+        $image = ImageUploadService::processImage($data['photo']);
+        if(!$image) {
             App::abort(500, "Something went wrong.");
         }
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'image_id' => $image->id,
             'supervisor_user_id' => User::supervisorLabelToId($data['supervisor']),
             'position' => $data['position'],
             'password' => bcrypt($data['password']),

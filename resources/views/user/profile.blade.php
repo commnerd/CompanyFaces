@@ -7,7 +7,7 @@
     </div>
 </header>
 <section class="row">
-    <div class="col-xs-12 col-sm-3">
+    <div class="col-xs-12 col-sm-3 center">
         <img src="{{ Storage::url($user->photo->image_path) }}">
         @include('partials.social', ['class' => 'upper', 'user' => $user])
     </div>
@@ -15,10 +15,12 @@
     @if($supervisor === NULL)
         <h3>This person is the {{ $user->position }}.</h3>
     @else
-        <div>{{ $supervisor->name }}</div>
-        @while(NULL !== ($supervisor = $supervisor->supervisor)):
-            <div>{{ $supervisor->name }}</div>
-        @endwhile
+        <carousel-3d>
+        <slide :index=0>{{ $supervisor->name }}</slide>
+        @for($supervisor = $supervisor->supervisor, $i = 1; NULL !== ($supervisor = $supervisor->supervisor); $i++):
+            <slide :index={{ $i }}>{{ $supervisor->name }}</slide>
+        @endfor
+        <carousel-3d>
     @endif
     </ul>
 </section>
