@@ -4,16 +4,15 @@ namespace App\Http\Controllers\Web;
 
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
-use Illuminate\View\View;
 use App\User;
 
 class SearchController extends WebController
 {
-    public function list(Request $request): View {
+    public function list(Request $request): Response {
         $users = User::getUsersFromSupervisorLabel($request->input('terms'));
         if(sizeof($users) == 1) {
-            return view('user.profile', ['user' => $users[0]]);
+            return response(null, 302)->header('Location', '/users/'.$users[0]->id);
         }
-        return view('user.list', compact('users'));
+        return response()->view('users.list', compact('users'));
     }
 }

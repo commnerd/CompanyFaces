@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers\Web;
 
+use App\Services\ImageUploadService;
+use Illuminate\Http\Response;
 use Illuminate\Http\Request;
+use App\Image;
+use App\User;
 
 class UsersController extends WebController
 {
@@ -11,7 +15,7 @@ class UsersController extends WebController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(): Response
     {
         //
     }
@@ -21,9 +25,9 @@ class UsersController extends WebController
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(): Response
     {
-        //
+
     }
 
     /**
@@ -32,9 +36,21 @@ class UsersController extends WebController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request): Response
     {
-        //
+        $image = ImageUploadService::processImage($request->input('photo'));
+        if(!$image) {
+            App::abort(500, "Something went wrong.");
+        }
+        return User::create([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'image_id' => $image->id,
+            'supervisor_user_id' => User::supervisorLabelToId($request->input('supervisor')),
+            'position' => $request->input('position'),
+            'password' => bcrypt($request->input('password')),
+            'biography' => empty($request->input('biography')) ? '' : $request->input('biography'),
+        ]);
     }
 
     /**
@@ -43,9 +59,10 @@ class UsersController extends WebController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id): Response
     {
-        //
+        $user = User::findOrFail($id);
+        return response()->view('users.show', compact('user'));
     }
 
     /**
@@ -54,7 +71,7 @@ class UsersController extends WebController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id): Response
     {
         //
     }
@@ -66,7 +83,7 @@ class UsersController extends WebController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id): Response
     {
         //
     }
@@ -77,7 +94,7 @@ class UsersController extends WebController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id): Response
     {
         //
     }

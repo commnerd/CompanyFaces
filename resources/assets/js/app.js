@@ -24,7 +24,10 @@ const app = new Vue({
 
 $('input[source]').each(function(index, input) {
     $(input).autocomplete({
-        source: $(input).attr('source')
+        source: $(input).attr('source'),
+        select: function(event, ui) {
+            $('.search-form').submit();
+        }
     });
 });
 

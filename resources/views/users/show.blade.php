@@ -21,20 +21,20 @@
             @if($user->supervisor !== NULL)
                 <li><a href="#supervisors">Supervisor Chain</a></li>
             @endif
-            @if($user->reports !== NULL)
+            @if($user->reports->count() !== 0)
                 <li><a href="#reports">Reports</a></li>
             @endif
         </ul>
         <div id="supervisors">
-            @if($user->supervisor === NULL)
-                <h3>This person is the {{ $user->position }}.</h3>
-            @else
+            @if($user->supervisor !== NULL)
                     @for(
                         $i = 0, $supervisor = $user->supervisor;
                         $supervisor !== NULL;
                         $supervisor = $supervisor->supervisor, $i++
                     )
-                        <img src="{{ Storage::url($supervisor->photo->image_path) }}">
+                        <a href="#">
+                            <img src="{{ Storage::url($supervisor->photo->image_path) }}">
+                        </a>
                     @endfor
             @endif
         </div>
