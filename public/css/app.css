@@ -8848,10 +8848,10 @@ img {
 }
 
 .center {
-  text-align: center !important;
+  text-align: center;
 }
 
-.col-xs-12 {
+.center {
   text-align: center;
 }
 

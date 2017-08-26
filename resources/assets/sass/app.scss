@@ -22,10 +22,10 @@ img {
     max-height: 200px;
 }
 .center {
-    text-align: center !important;
+    text-align: center;
 }
 
-.col-xs-12 {
+.center {
     text-align: center;
 }
 
@@ -36,6 +36,7 @@ img {
 .ui-helper-hidden-accessible {
     display:none;
 }
+
 .ui-autocomplete {
     list-style: none;
     padding: 7px;

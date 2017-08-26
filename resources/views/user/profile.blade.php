@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-<header class="row">
+<header class="row-fluid">
     <div>
         <h1 class="col-xs-12 center">{{ $user->name }}</h1>
     </div>
 </header>
-<section class="row">
+<section class="row-fluid">
     <div class="col-xs-12 col-sm-3 center">
         <img src="{{ Storage::url($user->photo->image_path) }}">
         @include('partials.social', ['class' => 'upper', 'user' => $user])
@@ -46,7 +46,7 @@
         </div>
     <div>
 </section>
-<section class="row">
+<section class="row-fluid">
     <div class="col-xs-12 col-sm-3">
         @include('partials.social', ['class' => 'lower', 'user' => $user])
     </div>
