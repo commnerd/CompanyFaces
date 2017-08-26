@@ -9,6 +9,7 @@ window._ = require('lodash');
 
 window.$ = window.jQuery = require('jquery');
 import 'jquery-ui/ui/widgets/autocomplete.js';
+import 'jquery-ui/ui/widgets/tabs.js';
 window.cropper = require('cropperjs');
 require('bootstrap-sass');
 
@@ -20,7 +21,6 @@ require('bootstrap-sass');
 
 window.Vue = require('vue');
 require('vue-resource');
-require('vue-carousel-3d');
 
 /**
  * We'll register a HTTP interceptor to attach the "CSRF" header to each of

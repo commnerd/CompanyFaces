@@ -35,3 +35,5 @@ $('input[name="terms"]').on('keyup', function(event) {
 });
 
 $('section ul').css('min-height', $('aside').height() + 'px');
+
+$('.tabs').tabs();

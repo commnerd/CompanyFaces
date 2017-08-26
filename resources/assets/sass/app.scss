@@ -12,9 +12,10 @@
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
 // Jquery UI
-@import 'node_modules/jquery-ui/themes/base/base';
+@import 'node_modules/jquery-ui/themes/base/core';
 @import 'node_modules/jquery-ui/themes/base/theme';
 @import 'node_modules/jquery-ui/themes/base/autocomplete';
+@import 'node_modules/jquery-ui/themes/base/tabs';
 
 // Application
 img {

@@ -12,20 +12,39 @@
         @include('partials.social', ['class' => 'upper', 'user' => $user])
     </div>
     <div class="col-xs-12 col-sm-9">
-    @if($user->supervisor === NULL)
-        <h3>This person is the {{ $user->position }}.</h3>
-    @else
-        <carousel-3d>
-            @for(
-                $i = 0, $supervisor = $user->supervisor;
-                $supervisor !== NULL;
-                $supervisor = $supervisor->supervisor, $i++
-            )
-                <slide index={{ $i }}><img src="{{ Storage::url($supervisor->photo->image_path) }}"></slide>
-            @endfor
-        </carousel-3d>
-    @endif
-    </ul>
+        <div class="tabs">
+            <ul>
+                @if($user->supervisor !== NULL)
+                    <li><a href="#supervisors">Supervisor Chain</a></li>
+                @endif
+                @if($user->reports !== NULL)
+                    <li><a href="#reports">Reports</a></li>
+                @endif
+            </ul>
+            <div id="supervisors">
+            @if($user->supervisor === NULL)
+                <h3>This person is the {{ $user->position }}.</h3>
+            @else
+                    @for(
+                        $i = 0, $supervisor = $user->supervisor;
+                        $supervisor !== NULL;
+                        $supervisor = $supervisor->supervisor, $i++
+                    )
+                        <img src="{{ Storage::url($supervisor->photo->image_path) }}">
+                    @endfor
+            @endif
+            </div>
+            <div id="reports">
+            @if($user->reports === NULL)
+                <h3>This person is not a supervisor.</h3>
+            @else
+                    @foreach($user->reports as $report)
+                        <img src="{{ Storage::url($report->photo->image_path) }}">
+                    @endforeach
+            @endif
+            </div>
+        </div>
+    <div>
 </section>
 <section class="row">
     <div class="col-xs-12 col-sm-3">

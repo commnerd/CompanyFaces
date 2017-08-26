@@ -13,8 +13,6 @@
     "laravel-elixir-webpack-official": "^1.0.2",
     "lodash": "^4.16.2",
     "vue": "^2.0.1",
-    "vue-resource": "^1.0.3",
-    "vue-carousel-3d": "^0.1.18"
     "cropperjs": "^1.0.0-rc.2",
     "jquery-ui": "^1.12.1"
   }

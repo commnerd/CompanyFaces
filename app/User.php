@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Notifications\Notifiable;
@@ -64,9 +65,9 @@ class User extends Authenticatable
     /**
      * Get this user's company
      *
-     * @return HasOne Company
+     * @return BelongsTo Company
      */
-    public function company(): HasOne {
+    public function company(): BelongsTo {
         return $this->hasOne(Company::class);
     }
 
@@ -86,6 +87,15 @@ class User extends Authenticatable
      */
     public function supervisor(): BelongsTo {
         return $this->belongsTo(User::class, 'supervisor_user_id');
+    }
+
+    /**
+     * Get user's reports
+     *
+     * @return HasMany Reports
+     */
+    public function reports(): HasMany {
+        return $this->hasMany(User::class, 'supervisor_user_id');
     }
 
     /**
