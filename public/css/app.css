@@ -8845,18 +8845,11 @@ a.ui-button:active,
 
 img {
   max-height: 200px;
+  max-width: 100%;
 }
 
 .center {
   text-align: center;
-}
-
-.center {
-  text-align: center;
-}
-
-.lower .email {
-  display: none;
 }
 
 .ui-helper-hidden-accessible {
@@ -8875,17 +8868,8 @@ img {
 }
 
 @media (min-width: 768px) {
-  #app > .row {
+  #app > .row-fluid {
     padding: 0 10px;
-  }
-  .col-xs-12 {
-    text-align: inherit;
-  }
-  .col-xs-12 .upper .email {
-    display: none;
-  }
-  .col-xs-12 .lower .email {
-    display: block;
   }
 }
 
