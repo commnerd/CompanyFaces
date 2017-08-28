@@ -1,12 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-<div style="position:absolute; top:0; bottom:0; left:0; right:0; z-index: -1;">
-    @for($i = 0; $i < 60; $i++)
-        <img src="http://lorempixel.com/110/110/people/{{$i % 11}}/cc" />
-    @endfor
+<div style="position:absolute; top:51px; bottom:0; left:0; right:0; z-index: -1;">
+    @foreach($users as $user)
+        <a href="{{ route('users.show', $user->id) }}">
+            <img src="{{ Storage::url($user->photo->image_path) }}" />
+        </a>
+    @endforeach
 </div>
-<div class="container">
+<div class="row-fluid">
     <form class="search-form" action="{{ route('search') }}" method="get">
         <div class="row-fluid">
             <div class="col-md-8 col-md-offset-2">

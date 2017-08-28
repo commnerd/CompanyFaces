@@ -6,13 +6,7 @@
         <label for="photo" class="col-md-4 control-label">Photo</label>
 
         <div class="col-md-6">
-            <input id="photo" type="file" class="form-control" name="photo" value="{{ old('photo') }}">
-
-            @if ($errors->has('photo'))
-                <span class="help-block">
-                    <strong>{{ $errors->first('photo') }}</strong>
-                </span>
-            @endif
+            @include('partials.photo_input')
         </div>
     </div>
 

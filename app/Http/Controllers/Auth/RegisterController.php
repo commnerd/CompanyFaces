@@ -47,7 +47,7 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
+    protected function validator(array $data): \Illuminate\Validation\Validator
     {
         return Validator::make($data, User::$registrationValidationRules);
     }
@@ -60,6 +60,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data): User
     {
+        dd($data);
         $image = ImageUploadService::processImage($data['photo']);
         if(!$image) {
             App::abort(500, "Something went wrong.");
