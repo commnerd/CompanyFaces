@@ -1,5 +1,4 @@
 <?php
-use App\Providers\ValidationServiceProvider;
 
 return [
 
@@ -13,7 +12,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => 'Faces',
+    'name' => env('APP_NAME', 'Laravel'),
 
     /*
     |--------------------------------------------------------------------------
@@ -169,8 +168,6 @@ return [
          */
         Intervention\Image\ImageServiceProvider::class,
 
-        //
-
         /*
          * Application Service Providers...
          */
@@ -179,7 +176,8 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        App\Providers\ValidationServiceProvider::class
+        App\Providers\ValidationServiceProvider::class,
+
     ],
 
     /*
@@ -199,6 +197,7 @@ return [
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
         'Auth' => Illuminate\Support\Facades\Auth::class,
         'Blade' => Illuminate\Support\Facades\Blade::class,
+        'Broadcast' => Illuminate\Support\Facades\Broadcast::class,
         'Bus' => Illuminate\Support\Facades\Bus::class,
         'Cache' => Illuminate\Support\Facades\Cache::class,
         'Config' => Illuminate\Support\Facades\Config::class,
@@ -227,7 +226,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        'InterventionImage' => Intervention\Image\Facades\Image::class,
+        'Image' => Intervention\Image\Facades\Image::class,
     ],
 
 ];

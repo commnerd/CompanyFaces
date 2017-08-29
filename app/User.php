@@ -19,10 +19,7 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $appends = [
-        'supervisorLabel',
-        'userCount'
-    ];
+    protected $appends = ['supervisorLabel'];
 
     /**
      * The attributes that should be cast to native types.
@@ -57,7 +54,7 @@ class User extends Authenticatable
      * @var array
      */
     public static $registrationValidationRules = [
-        'photo' => 'required|image|squared',
+        'photo' => 'required|image',
         'name' => 'required|max:255',
         'email' => 'required|email|max:255|unique:users',
         'supervisor' => 'required_if_users|max:255',
@@ -108,17 +105,6 @@ class User extends Authenticatable
      */
     public function getSupervisorLabelAttribute(): String {
         return User::formatSupervisorLabel($this);
-    }
-
-    /**
-     * User count attribute
-     *
-     * @return int $userCount
-     */
-    public function getUserCountAttribute(): int {
-        $users = User::get();
-        dd($users->count());
-        return $users->count();
     }
 
     /**

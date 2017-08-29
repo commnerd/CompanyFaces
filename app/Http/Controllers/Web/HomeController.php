@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Web;
 
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
-use App\User;
 
 class HomeController extends WebController
 {
@@ -23,9 +22,8 @@ class HomeController extends WebController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(): Response
+    public function index()
     {
-        $users = User::get();
-        return response()->view('search', compact('users'));
+        return view('search');
     }
 }
