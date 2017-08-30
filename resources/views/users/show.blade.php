@@ -32,7 +32,7 @@
                         $supervisor !== NULL;
                         $supervisor = $supervisor->supervisor, $i++
                     )
-                        <a href="#">
+                        <a href="{{ route('users.show', [$supervisor->id]) }}">
                             <img src="{{ Storage::url($supervisor->photo->image_path) }}">
                         </a>
                     @endfor
@@ -43,7 +43,9 @@
                 <h3>This person is not a supervisor.</h3>
             @else
                     @foreach($user->reports as $report)
-                        <img src="{{ Storage::url($report->photo->image_path) }}">
+                        <a href="{{ route('users.show', [$report->id]) }}">
+                            <img src="{{ Storage::url($report->photo->image_path) }}">
+                        </a>
                     @endforeach
             @endif
         </div>

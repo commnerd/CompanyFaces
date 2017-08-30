@@ -16,10 +16,6 @@ class ValidationServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Validator::extend('required_if_users', function ($attribute, $value, $parameters, $validator) {
-            dd(['count' => $users->count(), 'value' => $value]);
-            return true;
-        });
         Validator::extend('squared', function ($attribute, $value, $parameters, $validator) {
             $img = Image::make($value->path());
             return $img->width() === $img->height();

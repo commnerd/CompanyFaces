@@ -57,7 +57,7 @@ class User extends Authenticatable
         'photo' => 'required|image',
         'name' => 'required|max:255',
         'email' => 'required|email|max:255|unique:users',
-        'supervisor' => 'required_if_users|max:255',
+        'supervisor' => 'sometimes|required|max:255',
         'position' => 'required|max:255',
         'password' => 'required|min:6|confirmed',
     ];
@@ -166,6 +166,9 @@ class User extends Authenticatable
      */
     public static function supervisorLabelToId(String $label): int {
         $users = User::getUsersFromSupervisorLabel($label);
+        if($users->count() < 1) {
+            return 0;
+        }
         if($users->count() > 1) {
             App::abort(500, 'Something went wrong.');
         }

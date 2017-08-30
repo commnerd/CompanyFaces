@@ -64,14 +64,26 @@ class RegisterController extends Controller
         if(!$image) {
             App::abort(500, "Something went wrong.");
         }
+
+        // Grab supervisor string if available
+        $supervisor = isset($data['supervisor']) ? $data['supervisor'] : '';
+
+        // Translate string to ID
+        $supervisor_id = User::supervisorLabelToId($supervisor);
+
+        // If label translator returns 0, translate ID to null for DB insertion
+        if(empty($supervisor_id)) {
+            $supervisor_id = null;
+        }
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'image_id' => $image->id,
-            'supervisor_user_id' => User::supervisorLabelToId($data['supervisor']),
+            'supervisor_user_id' => $supervisor_id,
             'position' => $data['position'],
             'password' => bcrypt($data['password']),
-            'biography' => empty($data['biography']) ? '' : $data['biography'],
+            'biography' => $data['biography'],
         ]);
     }
 }

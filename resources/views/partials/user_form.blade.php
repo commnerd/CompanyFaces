@@ -43,7 +43,7 @@
             @endif
         </div>
     </div>
-
+    @if(App\User::get()->count() > 0)
     <div class="form-group{{ $errors->has('supervisor') ? ' has-error' : '' }}">
         <label for="supervisor" class="col-md-4 control-label">Supervisor</label>
 
@@ -56,6 +56,7 @@
             @endif
         </div>
     </div>
+    @endif
 
     <div class="form-group{{ $errors->has('position') ? ' has-error' : '' }}">
         <label for="position" class="col-md-4 control-label">Position</label>
