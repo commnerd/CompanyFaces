@@ -13,7 +13,8 @@ class ImagesTableSeeder extends Seeder
     public function run()
     {
         $image = new Image();
-        $image->image_path = '41f0db63b809d640d948b202f580f780.jpeg';
+        $image->name = '41f0db63b809d640d948b202f580f780.jpeg';
+        $image->path = '/storage/41f0db63b809d640d948b202f580f780.jpeg';
         $image->save();
     }
 }

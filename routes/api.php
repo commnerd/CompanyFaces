@@ -18,3 +18,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/v1/users/search', 'API\UsersController@search')->name('searchUsers');
+
+Route::post('/v1/users/image_upload', 'API\UsersController@imageUpload')->name('imageUpload');

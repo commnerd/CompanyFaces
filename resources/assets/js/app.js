@@ -43,3 +43,13 @@ $('input[name="terms"]').on('keyup', function(event) {
 $('section ul').css('min-height', $('aside').height() + 'px');
 
 $('.tabs').tabs();
+
+$(".image-drop").css({
+    'height': $('.image-drop').width() + 'px',
+    'line-height': $('.image-drop').width() + 'px'
+}).upload({
+	action: "/api/v1/users/image_upload"
+}).on('filecomplete', function(event, something, responseString) {
+    var response = JSON.parse(responseString);
+    $('.image-drop').html('<img alt="Profile Photo" src="' + response.path + '" /><input type="hidden" name="photo" value="' + response.name + '" />');
+});

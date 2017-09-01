@@ -16,5 +16,7 @@ Auth::routes();
 Route::get('/', 'Web\HomeController@index')->name('home');
 Route::get('/admin', 'Web\AdminController@index')->name('admin');
 Route::get('/search', 'Web\SearchController@list')->name('search');
-
-Route::resource('/users', 'Web\UsersController');
+Route::get('/users/{id}', 'Web\UsersController@show');
+Route::prefix('admin')->group(function () {
+    Route::resource('users', 'Web\UsersController');
+});

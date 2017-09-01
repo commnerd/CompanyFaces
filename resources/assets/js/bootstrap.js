@@ -13,6 +13,8 @@ try {
     require('jquery-ui/ui/widgets/autocomplete.js');
     require('jquery-ui/ui/widgets/tabs.js');
     require('bootstrap-sass');
+    require('formstone/dist/js/core.js');
+    require('formstone/dist/js/upload.js'); 
 } catch (e) {}
 
 /**

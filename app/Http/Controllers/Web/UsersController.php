@@ -17,7 +17,11 @@ class UsersController extends WebController
      */
     public function index(): Response
     {
-        //
+        $users = User::orderBy("name")->get();
+        if(sizeof($users) == 1) {
+            return response(null, 302)->header('Location', '/users/'.$users[0]->id);
+        }
+        return response()->view('users.index', compact('users'));
     }
 
     /**

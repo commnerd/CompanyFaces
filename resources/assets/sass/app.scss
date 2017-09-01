@@ -11,11 +11,15 @@
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
+// Formstone
+@import "node_modules/formstone/dist/css/upload";
+
 // Jquery UI
 @import 'node_modules/jquery-ui/themes/base/core';
 @import 'node_modules/jquery-ui/themes/base/theme';
 @import 'node_modules/jquery-ui/themes/base/autocomplete';
 @import 'node_modules/jquery-ui/themes/base/tabs';
+@import 'node_modules/froala-editor/css/froala_editor';
 
 // Application
 img {
@@ -37,6 +41,13 @@ img {
     background: rgb(255, 255, 255);
     border: thin solid rgb(204, 208, 210);
     @include rounded_corners(4px);
+}
+
+.image-drop {
+    text-align: center;
+    height: auto;
+    padding:10px inherit !important;
+    border-style: dashed;
 }
 
 @media (min-width: $screen-sm-min) {
