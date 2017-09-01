@@ -60,10 +60,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $image = ImageUploadService::processImage($data['photo']);
-        if(!$image) {
-            App::abort(500, "Something went wrong.");
-        }
+        $image = Image::where('name', $data['photo'])->firstOrFail();
 
         // Grab supervisor string if available
         $supervisor = isset($data['supervisor']) ? $data['supervisor'] : '';
