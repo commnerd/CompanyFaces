@@ -50,6 +50,19 @@ $(".image-drop").css({
 }).upload({
 	action: "/api/v1/users/image_upload"
 }).on('filecomplete', function(event, something, responseString) {
-    var response = JSON.parse(responseString);
+    var response = JSON.parse(responseString),
+        cropper;
     $('.image-drop').html('<img alt="Profile Photo" src="' + response.path + '" /><input type="hidden" name="photo" value="' + response.name + '" />');
+    cropper = new Cropper(document.getElementsByTagName('img')[0], {
+        aspectRatio: 1,
+        crop: function(e) {
+            console.log(e.detail.x);
+            console.log(e.detail.y);
+            console.log(e.detail.width);
+            console.log(e.detail.height);
+            console.log(e.detail.rotate);
+            console.log(e.detail.scaleX);
+            console.log(e.detail.scaleY);
+        }
+    });
 });
