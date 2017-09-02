@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Web;
+namespace App\Http\Controllers\Web\Admin;
 
-use Illuminate\Http\Request;
+use \App\Http\Controllers\Web\WebController;
 
 class AdminController extends WebController
 {

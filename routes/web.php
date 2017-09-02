@@ -12,11 +12,21 @@
 */
 
 Auth::routes();
+Route::namespace('Web')->group(function() {
+    Route::get('/', 'HomeController@index')->name('home');
+    Route::get('/search', 'SearchController@list')->name('search');
+    Route::get('/users/{id}', 'UsersController@show')->name('users.show');
 
-Route::get('/', 'Web\HomeController@index')->name('home');
-Route::get('/admin', 'Web\AdminController@index')->name('admin');
-Route::get('/search', 'Web\SearchController@list')->name('search');
-Route::get('/users/{id}', 'Web\UsersController@show');
-Route::prefix('admin')->group(function () {
-    Route::resource('users', 'Web\UsersController');
+    Route::prefix('admin')->namespace('Admin')->group(function () {
+        Route::get('/', 'AdminController@index')->name('admin.index');
+        Route::resource('users', 'UsersController', ['names' => [
+            'index' => 'admin.users.index',
+            'store' => 'admin.users.store',
+            'destroy' => 'admin.users.destroy',
+            'show' => 'admin.users.show',
+            'edit' => 'admin.users.edit',
+            'update' => 'admin.users.update',
+            'create' => 'admin.users.create',
+        ]]);
+    });
 });

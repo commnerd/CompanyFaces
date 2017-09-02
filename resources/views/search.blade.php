@@ -14,7 +14,7 @@
                     <div class="panel-heading">Search</div>
 
                     <div class="panel-body">
-                        <input text="text" name="terms" class="form-control" placeholder="Search" source="{{ route('searchUsers') }}" />
+                        <input text="text" name="terms" class="form-control" placeholder="Search" source="{{ route('search.users') }}" />
                     </div>
                 </div>
             </div>
