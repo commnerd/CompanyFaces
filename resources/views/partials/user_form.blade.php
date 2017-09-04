@@ -1,4 +1,4 @@
-<form class="form-horizontal" role="form" method="POST" action="{{ route($route) }}" enctype="multipart/form-data">
+<form class="form-horizontal" role="form" method="POST" action="{{ $submissionRoute }}" enctype="multipart/form-data">
     {{ csrf_field() }}
     <input type="hidden" name="supervisor_user_id" value="0">
 
@@ -8,7 +8,7 @@
         <label for="name" class="col-md-4 control-label">Name</label>
 
         <div class="col-md-6">
-            <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}">
+            <input id="name" type="text" class="form-control" name="name" value="{{ old('name') ? old('name') : isset($user) ? $user->name : '' }}">
 
             @if ($errors->has('name'))
                 <span class="help-block">
@@ -22,7 +22,7 @@
         <label for="email" class="col-md-4 control-label">E-Mail Address</label>
 
         <div class="col-md-6">
-            <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}">
+            <input id="email" type="email" class="form-control" name="email" value="{{ old('email') ? old('email') : isset($user) ? $user->email : '' }}">
 
             @if ($errors->has('email'))
                 <span class="help-block">
@@ -36,7 +36,7 @@
         <label for="supervisor" class="col-md-4 control-label">Supervisor</label>
 
         <div class="col-md-6">
-            <input id="supervisor" type="text" class="form-control" name="supervisor" value="{{ old('supervisor') }}" source="{{ route('search.users') }}">
+            <input id="supervisor" type="text" class="form-control" name="supervisor" value="{{ old('supervisor') ? old('supervisor') : isset($user) ? App\User::formatSupervisorLabel($user->supervisor) : '' }}" source="{{ route('search.users') }}">
             @if ($errors->has('supervisor'))
                 <span class="help-block">
                     <strong>{{ $errors->first('supervisor') }}</strong>
@@ -50,7 +50,7 @@
         <label for="position" class="col-md-4 control-label">Position</label>
 
         <div class="col-md-6">
-            <input id="position" type="text" class="form-control" name="position" value="{{ old('position') }}">
+            <input id="position" type="text" class="form-control" name="position" value="{{ old('position') ? old('position') : isset($user) ? $user->position : '' }}">
 
             @if ($errors->has('position'))
                 <span class="help-block">
@@ -86,7 +86,7 @@
         <label for="biography" class="col-md-4 control-label">Biography</label>
 
         <div class="col-md-6">
-            <textarea id="biography" type="text" class="form-control" name="biography">{{ old('biography') }}</textarea>
+            <textarea id="biography" type="text" class="form-control" name="biography">{{ old('biography') ? old('biography') : isset($user) ? $user->biograpny : '' }}</textarea>
 
             @if ($errors->has('biography'))
                 <span class="help-block">
@@ -99,7 +99,7 @@
     <div class="form-group">
         <div class="col-md-6 col-md-offset-4">
             <button type="submit" class="btn btn-primary">
-                Register
+                {{ $submissionText }}
             </button>
         </div>
     </div>

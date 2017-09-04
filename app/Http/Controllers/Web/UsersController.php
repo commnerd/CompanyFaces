@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Web;
 
-use App\Services\ImageUploadService;
+use App\Services\ImageProcessingService;
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 use App\Image;
@@ -42,7 +42,7 @@ class UsersController extends WebController
      */
     public function store(Request $request): Response
     {
-        $image = ImageUploadService::processImage($request->input('photo'));
+        $image = ImageProcessingService::processImage($request->input('photo'));
         if(!$image) {
             App::abort(500, "Something went wrong.");
         }

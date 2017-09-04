@@ -49,7 +49,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * The used for validating a user.
+     * The rules used for validating a user.
      *
      * @var array
      */
@@ -60,6 +60,16 @@ class User extends Authenticatable
         'supervisor' => 'sometimes|required|max:255',
         'position' => 'required|max:255',
         'password' => 'required|min:6|confirmed',
+    ];
+
+    /**
+     * The image variant sizings
+     *
+     * @var array
+     */
+    public static $variants = [
+        'profile' => '200',
+        'background' => '100',
     ];
 
     /**

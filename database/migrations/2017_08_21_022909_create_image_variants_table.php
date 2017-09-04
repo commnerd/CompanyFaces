@@ -17,7 +17,9 @@ class CreateImageVariantsTable extends Migration
             $table->increments('id');
             $table->integer('image_id');
             $table->foreign('image_id')->references('id')->on('images')->onDelete('cascade');
-
+            $table->string('label');
+            $table->string('path');
+            $table->string('url');
             $table->timestamps();
         });
     }

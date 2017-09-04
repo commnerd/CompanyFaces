@@ -11269,8 +11269,23 @@ img {
   max-width: 100%;
 }
 
+.search-form {
+  position: relative;
+  width: 50%;
+  margin: 0 auto;
+  z-index: 1;
+}
+
 .center {
   text-align: center;
+}
+
+.home_background {
+  position: absolute;
+  top: 51px;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 .ui-helper-hidden-accessible {

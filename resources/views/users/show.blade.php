@@ -8,7 +8,7 @@
 </header>
 <section class="row-fluid">
     <div class="col-xs-12 col-sm-3 center">
-        <img src="{{ $user->photo->path }}">
+        <img src="{{ $user->photo->url }}">
         <div class="email center"><a href="mailto:{{ $user->email }}">{{ $user->email }}</a></div>
     </div>
     <div class="col-xs-12 col-sm-9">
@@ -33,7 +33,7 @@
                         $supervisor = $supervisor->supervisor, $i++
                     )
                         <a href="{{ route('users.show', [$supervisor->id]) }}">
-                            <img src="{{ $supervisor->photo->path }}">
+                            <img src="{{ $supervisor->photo->url }}">
                         </a>
                     @endfor
             @endif
@@ -44,7 +44,7 @@
             @else
                     @foreach($user->reports as $report)
                         <a href="{{ route('users.show', [$report->id]) }}">
-                            <img src="{{ $report->photo->path }}">
+                            <img src="{{ $report->photo->url }}">
                         </a>
                     @endforeach
             @endif

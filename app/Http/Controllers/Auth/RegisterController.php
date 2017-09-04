@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Auth;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
-use App\Services\ImageUploadService;
+use App\Services\ImageProcessingService;
 use App\Image;
 use App\User;
 

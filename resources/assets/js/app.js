@@ -53,16 +53,16 @@ $(".image-drop").css({
     var response = JSON.parse(responseString),
         cropper;
     $('.image-drop').html('<img alt="Profile Photo" src="' + response.path + '" /><input type="hidden" name="photo" value="' + response.name + '" />');
+    $('input[name="photo"]').val(response.path);
     cropper = new Cropper(document.getElementsByTagName('img')[0], {
         aspectRatio: 1,
         crop: function(e) {
-            console.log(e.detail.x);
-            console.log(e.detail.y);
-            console.log(e.detail.width);
-            console.log(e.detail.height);
-            console.log(e.detail.rotate);
-            console.log(e.detail.scaleX);
-            console.log(e.detail.scaleY);
+            $('input[name="photo_crop_x"]').val(e.detail.x);
+            $('input[name="photo_crop_y"]').val(e.detail.y);
+            $('input[name="photo_crop_w"]').val(e.detail.width);
+            $('input[name="photo_crop_h"]').val(e.detail.height);
+            $('input[name="photo_scale_x"]').val(e.detail.scaleX);
+            $('input[name="photo_scale_y"]').val(e.detail.scaleY);
         }
     });
 });

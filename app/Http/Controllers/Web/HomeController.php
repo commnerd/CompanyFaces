@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
+use App\User;
 
 class HomeController extends WebController
 {
@@ -24,6 +25,7 @@ class HomeController extends WebController
      */
     public function index()
     {
-        return view('search');
+        $users = User::inRandomOrder()->limit(100)->get();
+        return view('search', ['users' => $users]);
     }
 }

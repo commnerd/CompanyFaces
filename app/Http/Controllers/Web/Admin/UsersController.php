@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers\Web\Admin;
 
-use App\Services\ImageUploadService;
+use App\Services\ImageProcessingService;
+use Illuminate\Http\Redirect;
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 use App\Image;
@@ -42,7 +43,7 @@ class UsersController extends AdminController
      */
     public function store(Request $request): Response
     {
-        $image = ImageUploadService::processImage($request->input('photo'));
+        $image = ImageProcessingService::processImage($request->input('photo'));
         if(!$image) {
             App::abort(500, "Something went wrong.");
         }
@@ -77,7 +78,8 @@ class UsersController extends AdminController
      */
     public function edit($id): Response
     {
-        //
+        $user = User::findOrFail($id);
+        return response()->view('admin.users.edit', compact('user'));
     }
 
     /**
@@ -87,9 +89,11 @@ class UsersController extends AdminController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id): Response
+    public function update(Request $request, $id): Redirect
     {
-        //
+        $this->validate($request, User::$validationRules);
+        User::where('id', $id)->update($request);
+        return redirect('admin.users.index', 302);
     }
 
     /**
