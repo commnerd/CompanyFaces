@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Validator;
-use App\Http\Controllers\Controller;
 use App\Services\ImageProcessingService;
+use App\Http\Controllers\Controller;
 use App\Image;
 use App\User;
 
@@ -60,6 +60,12 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $x = $data['photo_crop_x'];
+        $y = $data['photo_crop_y'];
+        $wh = $data['photo_crop_w'];
+
+        ImageProcessingService::processImage($data['photo'], $x, $y, $wh);
+
         $image = Image::where('name', $data['photo'])->firstOrFail();
 
         // Grab supervisor string if available

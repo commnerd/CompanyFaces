@@ -52,8 +52,8 @@ $(".image-drop").css({
 }).on('filecomplete', function(event, something, responseString) {
     var response = JSON.parse(responseString),
         cropper;
-    $('.image-drop').html('<img alt="Profile Photo" src="' + response.path + '" /><input type="hidden" name="photo" value="' + response.name + '" />');
-    $('input[name="photo"]').val(response.path);
+    $('.image-drop').html('<img alt="Profile Photo" src="' + response.url + '" />');
+    $('input[name="photo"]').val(response.name);
     cropper = new Cropper(document.getElementsByTagName('img')[0], {
         aspectRatio: 1,
         crop: function(e) {

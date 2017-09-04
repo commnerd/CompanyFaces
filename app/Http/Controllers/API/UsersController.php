@@ -15,7 +15,7 @@ class UsersController extends Controller
         $this->validate($request, [
             'file' => 'required|image'
         ]);
-        $image = ImageProcessingService::processImage($request->file('file'));
+        $image = ImageProcessingService::processOriginal($request->file('file'));
         return response()->json($image);
     }
 

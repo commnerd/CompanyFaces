@@ -2,7 +2,7 @@
 
 use App\Services\ImageProcessingService;
 use Illuminate\Database\Seeder;
-use App\Image;
+use \App\Image;
 
 class ImagesTableSeeder extends Seeder
 {
@@ -14,11 +14,11 @@ class ImagesTableSeeder extends Seeder
     public function run()
     {
         $image = new Image();
-        $image->name = '41f0db63b809d640d948b202f580f780.jpeg';
-        $image->url = '/storage/tmp/41f0db63b809d640d948b202f580f780.jpeg';
-        $image->path = storage_path().DIRECTORY_SEPARATOR.'app'.DIRECTORY_SEPARATOR.'public'.DIRECTORY_SEPARATOR.'tmp'.DIRECTORY_SEPARATOR.'41f0db63b809d640d948b202f580f780.jpeg';
+        $image->name = 'tmp'.DIRECTORY_SEPARATOR.'aaFDGJp072TRYxlkeW97kafsIUpys4cGjG2cxINA.jpeg';
+        $image->url = \Storage::url($image->name);
+        $image->path = \Storage::disk('public')->path($image->name);
         $image->save();
 
-        ImageProcessingService::processImage($image->path, 0, 0, 200);
+        ImageProcessingService::processImage($image->name, 0, 0, 200);
     }
 }
