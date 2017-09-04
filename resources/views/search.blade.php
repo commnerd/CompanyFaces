@@ -12,7 +12,7 @@
 <div class="home_background">
     @foreach($users as $user)
         <a href="{{ route('users.show', $user->id) }}">
-            <img src="{{ $user->photo->url }}" />
+            <img src="{{ $user->photo->variant('mini')->url }}" />
         </a>
     @endforeach
 </div>

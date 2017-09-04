@@ -19,6 +19,6 @@ class ImagesTableSeeder extends Seeder
         $image->path = \Storage::disk('public')->path($image->name);
         $image->save();
 
-        ImageProcessingService::processImage($image->name, 0, 0, 200);
+        ImageProcessingService::processImage($image->name, 105, 10, 50);
     }
 }
