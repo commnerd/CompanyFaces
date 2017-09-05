@@ -16,6 +16,8 @@ try {
     require('formstone/dist/js/core.js');
     require('formstone/dist/js/upload.js');
     require('cropperjs/dist/cropper.js');
+    require('tinymce/tinymce.js');
+    require('tinymce/themes/modern');
 } catch (e) {}
 
 /**

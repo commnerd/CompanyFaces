@@ -66,3 +66,5 @@ $(".image-drop").css({
         }
     });
 });
+
+tinymce.init({ selector:'textarea' });

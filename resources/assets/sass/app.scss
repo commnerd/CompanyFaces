@@ -21,11 +21,19 @@
 @import 'node_modules/jquery-ui/themes/base/tabs';
 @import 'node_modules/froala-editor/css/froala_editor';
 @import 'node_modules/cropperjs/dist/cropper';
+@import 'node_modules/tinymce/skins/lightgray/skin.min';
+@import 'node_modules/tinymce/skins/lightgray/content.min';
 
 // Application
 img {
     max-height: 200px;
     max-width: 100%;
+}
+
+label {
+    font-weight: normal;
+    font-family: Raleway, sans-serif;
+    color: #636b6f;
 }
 
 .search-form {
@@ -57,7 +65,7 @@ img {
     z-index: 1;
     background: rgb(255, 255, 255);
     border: thin solid rgb(204, 208, 210);
-    @include rounded_corners(4px);
+    @include rounded_corners($rounded-corner-radius);
 }
 
 .image-drop {
@@ -65,6 +73,10 @@ img {
     height: auto;
     padding:10px inherit !important;
     border-style: dashed;
+}
+
+.mce-tinymce {
+    @include rounded_corners($rounded-corner-radius);
 }
 
 @media (min-width: $screen-sm-min) {
