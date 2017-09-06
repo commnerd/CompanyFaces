@@ -12,7 +12,7 @@
         <div class="email center"><a href="mailto:{{ $user->email }}">{{ $user->email }}</a></div>
     </div>
     <div class="col-xs-12 col-sm-9">
-        {{$user->biography}}
+        {!! $user->biography !!}
     <div>
 </section>
 <section class="row-fluid">
