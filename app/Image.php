@@ -10,6 +10,7 @@ class Image extends Model
 {
     public $variantDefinitions = [
         'profile' => '200',
+        'search' => '150',
         'mini' => '100'
     ];
 

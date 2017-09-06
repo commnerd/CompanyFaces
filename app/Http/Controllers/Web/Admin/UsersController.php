@@ -18,10 +18,7 @@ class UsersController extends AdminController
      */
     public function index(): Response
     {
-        $users = User::orderBy("name")->get();
-        if(sizeof($users) == 1) {
-            return response(null, 302)->header('Location', route('admin.users.edit', ['id' => $users[0]->id]));
-        }
+        $users = User::all();
         return response()->view('admin.users.index', compact('users'));
     }
 

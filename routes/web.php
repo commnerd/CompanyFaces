@@ -17,7 +17,7 @@ Route::namespace('Web')->group(function() {
     Route::get('/search', 'SearchController@list')->name('search');
     Route::get('/users/{id}', 'UsersController@show')->name('users.show');
 
-    Route::prefix('admin')->namespace('Admin')->group(function () {
+    Route::namespace('Admin')->prefix('admin')->group(function () {
         Route::get('/', 'AdminController@index')->name('admin.index');
         Route::resource('users', 'UsersController', ['names' => [
             'index' => 'admin.users.index',
