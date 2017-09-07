@@ -14563,6 +14563,31 @@ label {
   color: #636b6f;
 }
 
+ul {
+  list-style: none;
+}
+
+li.list-container > * {
+  margin-left: 170px;
+}
+
+li.list-container {
+  height: 150px;
+}
+
+li.list-container img {
+  position: absolute;
+  margin: 0;
+}
+
+.float-left {
+  float: left;
+}
+
+.clearfix {
+  clear: both;
+}
+
 .search-form {
   position: relative;
   width: 50%;

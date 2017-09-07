@@ -36,6 +36,31 @@ label {
     color: #636b6f;
 }
 
+ul {
+    list-style: none;
+}
+
+li.list-container > * {
+    margin-left: $search-dimension + $standard-margin;
+}
+
+li.list-container {
+    height: $search-dimension;
+
+    img {
+        position: absolute;
+        margin: 0;
+    }
+}
+
+.float-left {
+    float: left;
+}
+
+.clearfix {
+    clear: both;
+}
+
 .search-form {
     position: relative;
     width:50%;
@@ -71,7 +96,7 @@ label {
 .image-drop {
     text-align: center;
     height: auto;
-    padding:10px inherit !important;
+    padding:$standard-padding inherit !important;
     border-style: dashed;
 }
 
