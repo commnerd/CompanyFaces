@@ -6,7 +6,7 @@
         <div class="col-md-6">
             <ul>
                 <li>
-                    <a href="{{route('admin.users.create')}}">Add User</a>
+                    <a href="{{ route('admin.users.index') }}">Users</a>
                 </li>
             </ul>
         </div>

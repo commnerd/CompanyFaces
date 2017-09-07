@@ -81,6 +81,12 @@
             </div>
         </nav>
 
+        @if(Session::has('message'))
+        <div class="alert-box success">
+            {{ Session::get('message') }}
+        </div>
+        @endif
+
         @yield('content')
     </div>
 

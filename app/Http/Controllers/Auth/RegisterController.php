@@ -79,6 +79,8 @@ class RegisterController extends Controller
             $supervisor_id = null;
         }
 
+        \Session::put('message', 'Test');
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],

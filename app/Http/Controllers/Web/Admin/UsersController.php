@@ -76,6 +76,7 @@ class UsersController extends AdminController
     public function edit($id): Response
     {
         $user = User::findOrFail($id);
+        $submissionRoute = 'admin.users.create';
         return response()->view('admin.users.edit', compact('user'));
     }
 

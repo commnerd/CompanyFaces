@@ -191,7 +191,10 @@ class User extends Authenticatable
      * @param User $user User to format
      * @return String Name and Position
      */
-    public static function formatSupervisorLabel(User $user): String {
+    public static function formatSupervisorLabel(User $user = null): String {
+        if(empty($user)) {
+            return '';
+        }
         return "$user->name ($user->position)";
     }
 }
