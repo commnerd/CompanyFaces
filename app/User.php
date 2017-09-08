@@ -49,7 +49,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * The rules used for validating a user.
+     * The rules used for validating a user's registration.
      *
      * @var array
      */
@@ -60,6 +60,42 @@ class User extends Authenticatable
         'supervisor' => 'sometimes|required|max:255',
         'position' => 'required|max:255',
         'password' => 'required|min:6|confirmed',
+    ];
+
+    /**
+     * The rules used for validating a user update.
+     *
+     * @param int $id Id to get validation rules for
+     * @return array Rules array
+     */
+    public static function getUpdateValidationRules(int $id, bool $passwordIsSet): array {
+        $rules = [
+            'photo' => 'required|string|stored_image',
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users,id,'.$id,
+            'supervisor' => 'sometimes|required|max:255',
+            'position' => 'required|max:255',
+        ];
+
+        if($passwordIsSet) {
+            $rules['password'] = 'required|min:6|confirmed';
+        }
+
+        return $rules;
+    }
+
+    /**
+     * The rules used for validating a user update.
+     *
+     * @var array
+     */
+    public static $creationValidationRules = [
+        'photo' => 'required|string|stored_image',
+        'name' => 'required|max:255',
+        'email' => 'required|email|max:255|unique:users',
+        'supervisor' => 'max:255',
+        'position' => 'required|max:255',
+        'password' => 'min:6|confirmed',
     ];
 
     /**

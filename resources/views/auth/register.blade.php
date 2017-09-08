@@ -7,7 +7,12 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Register</div>
                 <div class="panel-body">
-                    @include('partials.user_form', ['submissionText' => 'Register', 'submissionRoute' => route('register'), 'user' => null])
+                    @include('partials.user_form', [
+                        'submissionText' => 'Register',
+                        'submissionRoute' => route('register'),
+                        'submissionMethod' => 'POST'
+                        'user' => null
+                    ])
                 </div>
             </div>
         </div>

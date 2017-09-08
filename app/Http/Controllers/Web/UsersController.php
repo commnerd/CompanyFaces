@@ -19,7 +19,7 @@ class UsersController extends WebController
     {
         $users = User::orderBy("name")->get();
         if(sizeof($users) == 1) {
-            return response(null, 302)->header('Location', '/users/'.$users[0]->id);
+            return response(null, 302)->header('Location', route('users', ['user' => $users[0]->id]));
         }
         return response()->view('users.index', compact('users'));
     }

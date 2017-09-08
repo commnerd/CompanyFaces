@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Web\Admin;
 
 use App\Services\ImageProcessingService;
-use Illuminate\Http\Redirect;
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 use App\Image;
@@ -87,11 +86,17 @@ class UsersController extends AdminController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id): Redirect
+    public function update(Request $request, $id): Response
     {
-        $this->validate($request, User::$validationRules);
-        User::where('id', $id)->update($request);
-        return redirect('admin.users.index', 302);
+        $passwordSet = !empty($request->input('password'));
+        $this->validate($request, User::getUpdateValidationRules($id, $passwordSet));
+        $user = User::where('id', $id)->firstOrFail();
+        dd($user->toArray());
+        foreach($user->toArray() as $field => $value) {
+            dd($value);
+        }
+        $user->save();update($request->toArray());
+        return response(null, 302)->header('Location', route('admin.users.index'));
     }
 
     /**

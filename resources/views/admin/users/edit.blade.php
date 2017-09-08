@@ -7,7 +7,12 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Edit {{ $user->name }} ({{ $user->position }})</div>
                 <div class="panel-body">
-                    @include('partials.user_form', ['submissionRoute' => route('admin.users.update', $user->id), 'submissionText' => 'Update', 'user' => $user, ])
+                    @include('partials.user_form', [
+                        'submissionRoute' => route('admin.users.update', $user->id),
+                        'submissionText' => 'Update',
+                        'submissionMethod' => 'PUT',
+                        'user' => $user
+                    ])
                 </div>
             </div>
         </div>

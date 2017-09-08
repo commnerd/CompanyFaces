@@ -1,8 +1,11 @@
 <form class="form-horizontal" role="form" method="POST" action="{{ $submissionRoute }}" enctype="multipart/form-data">
+    @if(!in_array(strtoupper($submissionMethod), ['GET', 'POST']))
+        {{ method_field($submissionMethod) }}
+    @endif
     {{ csrf_field() }}
     <input type="hidden" name="supervisor_user_id" value="0">
 
-    @include('partials.photo_input')
+    @include('partials.photo_input', ['user' => $user])
 
     <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
         <label for="name" class="col-md-4 control-label">Name</label>
@@ -36,7 +39,7 @@
         <label for="supervisor" class="col-md-4 control-label">Supervisor</label>
 
         <div class="col-md-6">
-            <input id="supervisor" type="text" class="form-control" name="supervisor" value="{{ old('supervisor') ? old('supervisor') : isset($user) ? App\User::formatSupervisorLabel($user->supervisor) : '' }}" source="{{ route('search.users') }}">
+            <input id="supervisor" type="text" class="form-control" name="supervisor" value="{{ old('supervisor') ? old('supervisor') : isset($user) && isset($user->supervisor) ? $user->supervisor->supervisorLabel : '' }}" source="{{ route('search.users') }}">
             @if ($errors->has('supervisor'))
                 <span class="help-block">
                     <strong>{{ $errors->first('supervisor') }}</strong>
