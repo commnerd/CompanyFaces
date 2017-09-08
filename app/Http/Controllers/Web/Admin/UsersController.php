@@ -107,6 +107,9 @@ class UsersController extends AdminController
      */
     public function destroy($id): Response
     {
-        //
+        $user = User::findOrFail($id);
+        User::linkSubordinatesToSupervisor($user);
+        $user->destroy($id);
+        return response(null, 302)->header('Location', route('admin.users.index'));
     }
 }

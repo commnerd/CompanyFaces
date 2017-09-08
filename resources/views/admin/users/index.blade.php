@@ -10,7 +10,7 @@
                     <a href="{{route('admin.users.edit', ['user' => $user])}}">{{ $user->name }}</a>
                 </h3>
                 <span>{{ $user->position }}</span>
-                <a href="{{ route('admin.users.destroy', ['user' => $user]) }}">Delete</a>
+                @include('partials.delete_link', ['user' => $user])
             </li>
         @endforeach
     </ul>

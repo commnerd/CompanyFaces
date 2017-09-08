@@ -10,7 +10,7 @@
                     @include('partials.user_form', [
                         'submissionText' => 'Register',
                         'submissionRoute' => route('register'),
-                        'submissionMethod' => 'POST'
+                        'submissionMethod' => 'POST',
                         'user' => null
                     ])
                 </div>

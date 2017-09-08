@@ -68,3 +68,8 @@ $(".image-drop").css({
 });
 
 tinymce.init({ selector:'textarea' });
+
+$('a[href="#delete"]').click(function() {
+    $('a[href="#delete"]').parent().submit();
+    return false;
+});

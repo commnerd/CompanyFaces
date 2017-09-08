@@ -233,4 +233,20 @@ class User extends Authenticatable
         }
         return "$user->name ($user->position)";
     }
+
+    /**
+     * Link subordinates to supervisor
+     *
+     * @param User $user User to bypass
+     */
+    public static function linkSubordinatesToSupervisor(User $user) {
+        $supervisorId = null;
+        if(!empty($user->supervisor)) {
+            $supervisorId = $user->supervisor->id;
+        }
+        foreach($user->reports as $report) {
+            $report->supervisor_user_id = $supervisorId;
+            $report->save();
+        }
+    }
 }
