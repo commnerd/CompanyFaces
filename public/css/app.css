@@ -14588,6 +14588,21 @@ li.list-container img {
   clear: both;
 }
 
+.message {
+  position: absolute;
+  z-index: 1;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+}
+
+.message.bg-success {
+  border: thin solid green;
+  color: green;
+}
+
 .search-form {
   position: relative;
   width: 50%;

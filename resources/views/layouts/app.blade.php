@@ -81,9 +81,9 @@
             </div>
         </nav>
 
-        @if(Session::has('message'))
-        <div class="alert-box success">
-            {{ Session::get('message') }}
+        @if(Session::get('message'))
+        <div class="center bg-success message col-xs-6 col-xs-offset-3">
+            {{ Session::get('message')}}
         </div>
         @endif
 

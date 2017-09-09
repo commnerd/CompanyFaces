@@ -43,6 +43,7 @@ class UsersController extends AdminController
         if(!$image) {
             App::abort(500, "Something went wrong.");
         }
+        session()->flash('message', $request->input('name').'\'s profile successfully created.');
         return User::create([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
@@ -91,11 +92,13 @@ class UsersController extends AdminController
         $passwordSet = !empty($request->input('password'));
         $this->validate($request, User::getUpdateValidationRules($id, $passwordSet));
         $user = User::where('id', $id)->firstOrFail();
-        dd($user->toArray());
         foreach($user->toArray() as $field => $value) {
-            dd($value);
+            if(!empty($request->input($field))) {
+                $user->{$field} = $request->input($field);
+            }
         }
-        $user->save();update($request->toArray());
+        $user->save();
+        session()->flash('message', $request->input('name').'\'s profile successfully updated.');
         return response(null, 302)->header('Location', route('admin.users.index'));
     }
 
@@ -110,6 +113,7 @@ class UsersController extends AdminController
         $user = User::findOrFail($id);
         User::linkSubordinatesToSupervisor($user);
         $user->destroy($id);
+        session()->flash('message', $user->name.'\'s profile successfully deleted.');
         return response(null, 302)->header('Location', route('admin.users.index'));
     }
 }

@@ -67,7 +67,18 @@ $(".image-drop").css({
     });
 });
 
-tinymce.init({ selector:'textarea' });
+$('textarea').each(function(index, area) {
+    var content = $(area).html();
+    tinymce.init({
+        target: area,
+        setup: function(ed){
+            ed.on("init", function(ed) {
+                tinymce.activeEditor.setContent($(area).html());
+                tinymce.execCommand('mceRepaint');
+            });
+        }
+    });
+});
 
 $('a[href="#delete"]').click(function() {
     $('a[href="#delete"]').parent().submit();
