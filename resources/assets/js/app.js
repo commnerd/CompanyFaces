@@ -81,6 +81,10 @@ $('textarea').each(function(index, area) {
 });
 
 $('a[href="#delete"]').click(function() {
-    $('a[href="#delete"]').parent().submit();
+    var form = $('a[href="#delete"]').parent();
+    $('.modal').modal('show');
+    $('.modal .btn-danger').click(function() {
+        $(form).submit();
+    });
     return false;
 });
