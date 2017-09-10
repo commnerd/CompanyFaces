@@ -239,7 +239,7 @@ class User extends Authenticatable
      *
      * @param User $user User to bypass
      */
-    public static function linkSubordinatesToSupervisor(User $user) {
+    public static function linkSubordinatesToSupervisor(User &$user) {
         $supervisorId = null;
         if(!empty($user->supervisor)) {
             $supervisorId = $user->supervisor->id;

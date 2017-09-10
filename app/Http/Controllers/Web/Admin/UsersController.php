@@ -112,7 +112,8 @@ class UsersController extends AdminController
     {
         $user = User::findOrFail($id);
         User::linkSubordinatesToSupervisor($user);
-        $user->destroy($id);
+        $user = User::findOrFail($id);
+        User::destroy($id);
         session()->flash('message', $user->name.'\'s profile successfully deleted.');
         return response(null, 302)->header('Location', route('admin.users.index'));
     }

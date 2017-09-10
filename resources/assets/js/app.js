@@ -81,7 +81,7 @@ $('textarea').each(function(index, area) {
 });
 
 $('a[href="#delete"]').click(function() {
-    var form = $('a[href="#delete"]').parent();
+    var form = $(this).parent();
     $('.modal').modal('show');
     $('.modal .btn-danger').click(function() {
         $(form).submit();
