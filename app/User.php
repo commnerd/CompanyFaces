@@ -15,6 +15,27 @@ class User extends Authenticatable
     use Notifiable;
 
     /**
+     * Request for registration validation rule set
+     *
+     * @var string
+     */
+    const VALIDATION_REGISTER = 'register';
+
+    /**
+     * Request for update validation rule set
+     *
+     * @var string
+     */
+    const VALIDATION_UPDATE = 'update';
+
+    /**
+     * Request for admin creation validation rule set
+     *
+     * @var string
+     */
+    const VALIDATION_CREATE = 'create';
+
+    /**
      * The accessors to append to the model's array form.
      *
      * @var array
@@ -49,33 +70,24 @@ class User extends Authenticatable
     ];
 
     /**
-     * The rules used for validating a user's registration.
-     *
-     * @var array
-     */
-    public static $registrationValidationRules = [
-        'photo' => 'required|string|stored_image',
-        'name' => 'required|max:255',
-        'email' => 'required|email|max:255|unique:users',
-        'supervisor' => 'sometimes|required|max:255',
-        'position' => 'required|max:255',
-        'password' => 'required|min:6|confirmed',
-    ];
-
-    /**
-     * The rules used for validating a user update.
+     * The rules used for validating user input.
      *
      * @param int $id Id to get validation rules for
      * @return array Rules array
      */
-    public static function getUpdateValidationRules(int $id, bool $passwordIsSet): array {
-        $rules = [
-            'photo' => 'required|string|stored_image',
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users,id,'.$id,
-            'supervisor' => 'sometimes|required|max:255',
-            'position' => 'required|max:255',
-        ];
+    public static function getValidationRules(string $ruleSet, int $id = 0, bool $passwordIsSet = true): array {
+        if($ruleSet === User::VALIDATION_UPDATE && ($id === 0)) {
+            throw new \Exception('Something went wrong.');
+        }
+        $rules = [];
+        $rules['photo'] = 'required|string|stored_image';
+        $rules['name'] = 'required|max:255';
+        $rules['email'] = 'required|email|max:255|unique:users';
+        if($ruleSet === User::VALIDATION_UPDATE) {
+            $rules['email'] .= ',id,'.$id;
+        }
+        $rules['supervisor'] = 'sometimes|max:255';
+        $rules['position'] = 'required|max:255';
 
         if($passwordIsSet) {
             $rules['password'] = 'required|min:6|confirmed';
@@ -83,20 +95,6 @@ class User extends Authenticatable
 
         return $rules;
     }
-
-    /**
-     * The rules used for validating a user update.
-     *
-     * @var array
-     */
-    public static $creationValidationRules = [
-        'photo' => 'required|string|stored_image',
-        'name' => 'required|max:255',
-        'email' => 'required|email|max:255|unique:users',
-        'supervisor' => 'max:255',
-        'position' => 'required|max:255',
-        'password' => 'min:6|confirmed',
-    ];
 
     /**
      * The image variant sizings

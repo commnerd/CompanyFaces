@@ -67,16 +67,11 @@ $(".image-drop").css({
     });
 });
 
+
 $('textarea').each(function(index, area) {
     var content = $(area).html();
     tinymce.init({
-        target: area,
-        setup: function(ed){
-            ed.on("init", function(ed) {
-                tinymce.activeEditor.setContent($(area).html());
-                tinymce.execCommand('mceRepaint');
-            });
-        }
+        target: area
     });
 });
 
@@ -88,3 +83,17 @@ $('a[href="#delete"]').click(function() {
     });
     return false;
 });
+
+if($('.image-drop > img').length > 0) {
+    var img = $('.image-drop > img');
+    $(img).remove();
+    $('.image-drop .fs-upload-target').html(img);
+}
+
+if($('.message').length > 0) {
+    setTimeout(function() {
+        $('.message').fadeOut(1000, function() {
+            $('.message').remove();
+        });
+    }, 2000);
+}

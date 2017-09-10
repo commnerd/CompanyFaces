@@ -89,7 +89,7 @@
         <label for="biography" class="col-md-4 control-label">Biography</label>
 
         <div class="col-md-6">
-            <textarea id="biography" type="text" class="form-control" name="biography">{{ old('biography') ? old('biography') : isset($user) ? $user->biograpny : '' }}</textarea>
+            <textarea id="biography" type="text" class="form-control" name="biography">{{ old('biography') ? old('biography') : isset($user) ? $user->biography : '' }}</textarea>
 
             @if ($errors->has('biography'))
                 <span class="help-block">

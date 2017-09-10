@@ -39,12 +39,17 @@ class UsersController extends AdminController
      */
     public function store(Request $request): Response
     {
-        $image = ImageProcessingService::processImage($request->input('photo'));
+        $x = $request->input('photo_crop_x');
+        $y = $request->input('photo_crop_y');
+        $wh = $request->input('photo_crop_w');
+
+        $this->validate($request, User::getValidationRules(User::VALIDATION_CREATE));
+        $image = ImageProcessingService::processImage($request->input('photo'), $x, $y, $wh);
         if(!$image) {
             App::abort(500, "Something went wrong.");
         }
         session()->flash('message', $request->input('name').'\'s profile successfully created.');
-        return User::create([
+        User::create([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'image_id' => $image->id,
@@ -53,6 +58,7 @@ class UsersController extends AdminController
             'password' => bcrypt($request->input('password')),
             'biography' => empty($request->input('biography')) ? '' : $request->input('biography'),
         ]);
+        return response(null, 302)->header('Location', route('admin.users.index'));
     }
 
     /**
@@ -89,9 +95,28 @@ class UsersController extends AdminController
      */
     public function update(Request $request, $id): Response
     {
-        $passwordSet = !empty($request->input('password'));
-        $this->validate($request, User::getUpdateValidationRules($id, $passwordSet));
+        $image = null;
+
+        $x = $request->input('photo_crop_x');
+        $y = $request->input('photo_crop_y');
+        $wh = $request->input('photo_crop_w');
+
+        $processImage = !empty($x) && !empty($y) && !empty($wh);
+
+        if($processImage) {
+            $image = ImageProcessingService::processImage($request->input('photo'), $x, $y, $wh);
+            if(!$image) {
+                App::abort(500, "Something went wrong.");
+            }
+        }
+        $passwordSet = !empty($request->input('password')) && !empty($request->input('password_confirmation'));
+        $this->validate($request, User::getValidationRules(User::VALIDATION_UPDATE, $id, $passwordSet));
         $user = User::where('id', $id)->firstOrFail();
+
+        if($processImage) {
+            $user->image_id = $image->id;
+        }
+
         foreach($user->toArray() as $field => $value) {
             if(!empty($request->input($field))) {
                 $user->{$field} = $request->input($field);

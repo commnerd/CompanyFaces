@@ -7,7 +7,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Create</div>
                 <div class="panel-body">
-                    @include('partials.user_form', ['submissionRoute' => 'admin.users.create', 'submissionText' => 'Create', 'user' => null])
+                    @include('partials.user_form', ['submissionRoute' => route('admin.users.store'), 'submissionMethod' => 'POST', 'submissionText' => 'Create', 'user' => null])
                 </div>
             </div>
         </div>
