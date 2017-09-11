@@ -14650,6 +14650,11 @@ li.list-container img {
   -webkit-border-radius: 4px;
 }
 
+.table-users tr > td > a,
+.table-users tr > td > form > a {
+  line-height: 100px;
+}
+
 @media (min-width: 768px) {
   #app > .row-fluid {
     padding: 0 10px;

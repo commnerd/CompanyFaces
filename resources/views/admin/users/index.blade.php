@@ -1,18 +1,36 @@
 @extends('layouts.app')
 
 @section('content')
-<div>
-    <ul>
-        @foreach($users as $user)
-            <li class="list-container">
-                <img src="{{ $user->photo->variant('search')->url }}" />
-                <h3>
-                    <a href="{{route('admin.users.edit', ['user' => $user])}}">{{ $user->name }}</a>
-                </h3>
-                <span>{{ $user->position }}</span>
-                @include('partials.delete_link', ['user' => $user])
-            </li>
-        @endforeach
+<div class="col-xs-12 table-responsive">
+    <table class="table table-striped table-users">
+        <thead>
+            <tr>
+                <th>
+                    Photo
+                </th>
+                <th>
+                    Name (Position)
+                </th>
+                <th>
+                    Actions
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($users as $user)
+                <tr class="list-container">
+                    <td>
+                        <img src="{{ $user->photo->variant('mini')->url }}" />
+                    </td>
+                    <td>
+                        <a href="{{route('admin.users.edit', ['user' => $user])}}">{{ $user->supervisorLabel }}</a>
+                    </td>
+                    <td>
+                        @include('partials.delete_link', ['user' => $user])
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
     </ul>
 </div>
 <div class="modal fade" tabindex="-1" role="dialog">
