@@ -9,7 +9,7 @@ use App\Image;
 use App\User;
 
 class UsersController extends AdminController
-{
+{    
     /**
      * Display a listing of the resource.
      *
