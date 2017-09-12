@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<h1 class="col-xs-12">Users <a href="{{ route('admin.users.create') }}"><i class="fa fa-plus"></i></a></h1>
 <div class="col-xs-12 table-responsive">
     <table class="table table-striped table-users">
         <thead>
@@ -11,7 +12,7 @@
                 <th>
                     Name (Position)
                 </th>
-                <th>
+                <th class="center">
                     Actions
                 </th>
             </tr>
@@ -25,7 +26,8 @@
                     <td>
                         <a href="{{route('admin.users.edit', ['user' => $user])}}">{{ $user->supervisorLabel }}</a>
                     </td>
-                    <td>
+                    <td class="actions center">
+                        <a href="{{ route('admin.users.edit', ['user' => $user]) }}" class="fa fa-pencil-square-o"></a>
                         @include('partials.delete_link', ['user' => $user])
                     </td>
                 </tr>

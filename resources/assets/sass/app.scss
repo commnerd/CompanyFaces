@@ -14,6 +14,9 @@
 // Formstone
 @import "node_modules/formstone/dist/css/upload";
 
+// FontAwesome
+@import "node_modules/font-awesome/scss/font-awesome";
+
 // Jquery UI
 @import 'node_modules/jquery-ui/themes/base/core';
 @import 'node_modules/jquery-ui/themes/base/theme';
@@ -38,6 +41,13 @@ label {
 
 ul {
     list-style: none;
+}
+
+td.actions * {
+    display:inline;
+    a {
+        margin: 0 $standard-link-margin;
+    }
 }
 
 li.list-container > * {
