@@ -87,6 +87,9 @@ class User extends Authenticatable
             $rules['email'] .= ',id,'.$id;
         }
         $rules['supervisor'] = 'sometimes|max:255';
+        if($ruleSet === User::VALIDATION_UPDATE) {
+            $rules['supervisor'] .= '|not_circular:id='.$id;
+        }
         $rules['position'] = 'required|max:255';
 
         if($passwordIsSet) {

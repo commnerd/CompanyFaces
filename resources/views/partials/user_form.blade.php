@@ -11,7 +11,7 @@
         <label for="name" class="col-md-4 control-label">Name</label>
 
         <div class="col-md-6">
-            <input id="name" type="text" class="form-control" name="name" value="{{ old('name') ? old('name') : isset($user) ? $user->name : '' }}">
+            <input id="name" type="text" class="form-control" name="name" value="{{ old('name', $user->name) }}">
 
             @if ($errors->has('name'))
                 <span class="help-block">
@@ -25,7 +25,7 @@
         <label for="email" class="col-md-4 control-label">E-Mail Address</label>
 
         <div class="col-md-6">
-            <input id="email" type="email" class="form-control" name="email" value="{{ old('email') ? old('email') : isset($user) ? $user->email : '' }}">
+            <input id="email" type="email" class="form-control" name="email" value="{{ old('email', $user->email) }}">
 
             @if ($errors->has('email'))
                 <span class="help-block">
@@ -39,7 +39,7 @@
         <label for="supervisor" class="col-md-4 control-label">Supervisor</label>
 
         <div class="col-md-6">
-            <input id="supervisor" type="text" class="form-control" name="supervisor" value="{{ old('supervisor') ? old('supervisor') : isset($user) && isset($user->supervisor) ? $user->supervisor->supervisorLabel : '' }}" source="{{ route('search.users') }}">
+            <input id="supervisor" type="text" class="form-control" name="supervisor" value="{{ old('supervisor', isset($user->supervisor) ?? $user->supervisor->supervisorLabel) }}" source="{{ route('search.users') }}">
             @if ($errors->has('supervisor'))
                 <span class="help-block">
                     <strong>{{ $errors->first('supervisor') }}</strong>
@@ -53,7 +53,7 @@
         <label for="position" class="col-md-4 control-label">Position</label>
 
         <div class="col-md-6">
-            <input id="position" type="text" class="form-control" name="position" value="{{ old('position') ? old('position') : isset($user) ? $user->position : '' }}">
+            <input id="position" type="text" class="form-control" name="position" value="{{ old('position', $user->position) }}">
 
             @if ($errors->has('position'))
                 <span class="help-block">
@@ -89,7 +89,7 @@
         <label for="biography" class="col-md-4 control-label">Biography</label>
 
         <div class="col-md-6">
-            <textarea id="biography" type="text" class="form-control" name="biography">{{ old('biography') ? old('biography') : isset($user) ? $user->biography : '' }}</textarea>
+            <textarea id="biography" type="text" class="form-control" name="biography">{{ old('biography', $user->biography) }}</textarea>
 
             @if ($errors->has('biography'))
                 <span class="help-block">
