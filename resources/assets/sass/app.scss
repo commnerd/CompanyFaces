@@ -131,6 +131,21 @@ li.list-container {
     line-height: 100px;
 }
 
+a.fa-plus {
+    text-decoration: none;
+    color: $add-color;
+}
+
+a.fa-times {
+    text-decoration: none;
+    color: $delete-color;
+}
+
+a.fa-pencil-square-o {
+    text-decoration: none;
+    color: $edit-color;
+}
+
 @media (min-width: $screen-sm-min) {
     #app>.row-fluid {
         padding: 0 $standard-padding;

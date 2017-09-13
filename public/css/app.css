@@ -17716,6 +17716,21 @@ li.list-container img {
   line-height: 100px;
 }
 
+a.fa-plus {
+  text-decoration: none;
+  color: #468847;
+}
+
+a.fa-times {
+  text-decoration: none;
+  color: #D14;
+}
+
+a.fa-pencil-square-o {
+  text-decoration: none;
+  color: #3A87AD;
+}
+
 @media (min-width: 768px) {
   #app > .row-fluid {
     padding: 0 10px;

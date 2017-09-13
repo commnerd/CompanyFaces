@@ -9,7 +9,7 @@ use App\Image;
 use App\User;
 
 class UsersController extends AdminController
-{    
+{
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +17,7 @@ class UsersController extends AdminController
      */
     public function index(): Response
     {
-        $users = User::all();
+        $users = User::paginate(10);
         return response()->view('admin.users.index', compact('users'));
     }
 

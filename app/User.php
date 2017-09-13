@@ -6,9 +6,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Collection;
 
 class User extends Authenticatable
 {
@@ -155,10 +155,10 @@ class User extends Authenticatable
      * Get supervisor from string
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param  String $string                       Supervisor Label used to determine user
-     * @return \Illuminate\Support\Collection       Users
+     * @param  String $string                               Supervisor Label used to determine user
+     * @return \Illuminate\Pagination\LengthAwarePaginator  Users
      */
-    public static function getUsersFromSupervisorLabel(String $string): Collection {
+    public static function getUsersFromSupervisorLabel(String $string): LengthAwarePaginator {
         $nameAndPosition = ['name' => $string];
         try {
             $nameAndPosition = User::parseSupervisorLabel($string);
@@ -171,7 +171,7 @@ class User extends Authenticatable
         if(isset($nameAndPosition['position'])) {
             $usersQuery = $usersQuery->where('position', $nameAndPosition['position']);
         }
-        $users = $usersQuery->get();
+        $users = $usersQuery->paginate(15);
         return $users;
     }
 

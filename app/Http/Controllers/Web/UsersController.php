@@ -17,7 +17,7 @@ class UsersController extends WebController
      */
     public function index(): Response
     {
-        $users = User::orderBy("name")->get();
+        $users = User::orderBy("name")->paginate(15);
         if(sizeof($users) == 1) {
             return response(null, 302)->header('Location', route('users', ['user' => $users[0]->id]));
         }

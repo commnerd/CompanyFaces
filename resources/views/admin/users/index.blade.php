@@ -1,40 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-<h1 class="col-xs-12">Users <a href="{{ route('admin.users.create') }}"><i class="fa fa-plus"></i></a></h1>
-<div class="col-xs-12 table-responsive">
-    <table class="table table-striped table-users">
-        <thead>
-            <tr>
-                <th>
-                    Photo
-                </th>
-                <th>
-                    Name (Position)
-                </th>
-                <th class="center">
-                    Actions
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($users as $user)
-                <tr class="list-container">
-                    <td>
-                        <img src="{{ $user->photo->variant('mini')->url }}" />
-                    </td>
-                    <td>
-                        <a href="{{route('admin.users.edit', ['user' => $user])}}">{{ $user->supervisorLabel }}</a>
-                    </td>
-                    <td class="actions center">
-                        <a href="{{ route('admin.users.edit', ['user' => $user]) }}" class="fa fa-pencil-square-o"></a>
-                        @include('partials.delete_link', ['user' => $user])
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
-    </ul>
-</div>
+<h1 class="col-xs-12">Users <a class="fa fa-plus" href="{{ route('admin.users.create') }}"></a></h1>
+@include('partials.users_table', ['users' => $users])
 <div class="modal fade" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
