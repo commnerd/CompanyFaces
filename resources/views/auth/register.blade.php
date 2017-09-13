@@ -11,7 +11,7 @@
                         'submissionText' => 'Register',
                         'submissionRoute' => route('register'),
                         'submissionMethod' => 'POST',
-                        'user' => null
+                        'user' => new App\User
                     ])
                 </div>
             </div>
