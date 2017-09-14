@@ -23,6 +23,24 @@ class Badge extends Model
     const VALIDATION_CREATE = 'create';
 
     /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'stand_alone' => 'boolean',
+    ];
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'image_id', 'title', 'stand_alone', 'description'
+    ];
+
+    /**
      * The rules used for validating badge input.
      *
      * @param int $id Id to get validation rules for

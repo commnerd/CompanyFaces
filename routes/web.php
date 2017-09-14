@@ -16,6 +16,7 @@ Route::namespace('Web')->group(function() {
     Route::get('/', 'HomeController@index')->name('home');
     Route::get('/search', 'SearchController@list')->name('search');
     Route::get('/users/{id}', 'UsersController@show')->name('users.show');
+    Route::resource('badges', 'BadgesController')->only('show');
 
     Route::namespace('Admin')->prefix('admin')->group(function () {
         Route::get('/', 'AdminController@index')->name('admin.index');
