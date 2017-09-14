@@ -59,7 +59,8 @@
                                 </a>
                                 <ul class="dropdown-menu" role="menu">
                                     @if( Auth::user()->superuser )
-                                        <li><a href="{{ route('admin.users.index') }}">Users</a></li>
+                                        <li><a href="{{ route('admin.badges.index') }}">Manage Badges</a></li>
+                                        <li><a href="{{ route('admin.users.index') }}">Manage Users</a></li>
                                         <li role="separator" class="divider"></li>
                                     @endif
                                     <li>

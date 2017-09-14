@@ -1,13 +1,13 @@
 <div class="col-xs-12 table-responsive">
-    {{ $users->links() }}
-    <table class="table table-striped table-users">
+    {{ $badges->links() }}
+    <table class="table table-striped table-badges">
         <thead>
             <tr>
                 <th>
                     Photo
                 </th>
                 <th>
-                    Name (Position)
+                    Title
                 </th>
                 @if(Auth::user() && Auth::user()->superuser)
                 <th class="center">
@@ -17,23 +17,23 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($users as $user)
+            @foreach($badges as $badge)
                 <tr class="list-container">
                     <td>
-                        <img src="{{ $user->photo->variant('mini')->url }}" />
+                        <img src="{{ $badge->photo->variant('mini')->url }}" />
                     </td>
                     <td>
-                        <a href="{{route('users.show', ['user' => $user])}}">{{ $user->supervisorLabel }}</a>
+                        <a href="{{route('badges.show', ['badge' => $badge])}}">{{ $badge->title }}</a>
                     </td>
                     @if(Auth::user() && Auth::user()->superuser)
                     <td class="actions center">
-                        <a href="{{ route('admin.users.edit', ['user' => $user]) }}" class="fa fa-pencil-square-o fa-2x"></a>
-                        @include('partials.delete_link', ['context' => 'user', 'entity' => $user])
+                        <a href="{{ route('admin.badges.edit', ['badge' => $badge]) }}" class="fa fa-pencil-square-o fa-2x"></a>
+                        @include('partials.delete_link', ['context' => 'badge', 'entity' => $badge])
                     </td>
                     @endif
                 </tr>
             @endforeach
         </tbody>
     </table>
-    {{ $users->links() }}
+    {{ $badges->links() }}
 </div>

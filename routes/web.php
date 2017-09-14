@@ -28,5 +28,14 @@ Route::namespace('Web')->group(function() {
             'update' => 'admin.users.update',
             'create' => 'admin.users.create',
         ]]);
+        Route::resource('badges', 'BadgesController', ['names' => [
+            'index' => 'admin.badges.index',
+            'store' => 'admin.badges.store',
+            'destroy' => 'admin.badges.destroy',
+            'show' => 'admin.badges.show',
+            'edit' => 'admin.badges.edit',
+            'update' => 'admin.badges.update',
+            'create' => 'admin.badges.create',
+        ]]);
     });
 });
