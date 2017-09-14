@@ -4,7 +4,7 @@
     @endif
     {{ csrf_field() }}
 
-    @include('partials.photo_input', ['badge' => $badge])
+    @include('partials.photo_input', ['model' => $badge])
 
     <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
         <label for="title" class="col-md-4 control-label">title</label>

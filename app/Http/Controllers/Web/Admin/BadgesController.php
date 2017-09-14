@@ -76,7 +76,7 @@ class BadgesController extends AdminController
      */
     public function edit(Badge $badge)
     {
-        //
+        return response()->view('admin.badges.edit', compact('badge'));
     }
 
     /**
@@ -99,7 +99,7 @@ class BadgesController extends AdminController
      */
     public function destroy(Badge $badge): Response
     {
-        $badge->destroy();
+        $badge->destroy($badge->id);
         session()->flash('message', $badge->title.' badge successfully deleted.');
         return response(null, 302)->header('Location', route('admin.badges.index'));
     }

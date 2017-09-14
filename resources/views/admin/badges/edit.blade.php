@@ -5,7 +5,7 @@
     <div class="row-fluid">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Edit {{ $user->name }} ({{ $user->position }})</div>
+                <div class="panel-heading">Edit {{ $badge->title }}</div>
                 <div class="panel-body">
                     @include('partials.badge_form', [
                         'submissionRoute' => route('admin.badges.update', $badge->id),

@@ -5,7 +5,7 @@
     {{ csrf_field() }}
     <input type="hidden" name="supervisor_user_id" value="0">
 
-    @include('partials.photo_input', ['user' => $user])
+    @include('partials.photo_input', ['model' => $user])
 
     <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
         <label for="name" class="col-md-4 control-label">Name</label>
