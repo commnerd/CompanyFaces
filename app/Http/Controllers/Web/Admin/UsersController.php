@@ -56,7 +56,7 @@ class UsersController extends AdminController
             'supervisor_user_id' => User::supervisorLabelToId($request->input('supervisor')),
             'position' => $request->input('position'),
             'password' => bcrypt($request->input('password')),
-            'biography' => empty($request->input('biography')) ? '' : $request->input('biography'),
+            'biography' => $request->input('biography'),
         ]);
         return response(null, 302)->header('Location', route('admin.users.index'));
     }
@@ -82,7 +82,6 @@ class UsersController extends AdminController
     public function edit($id): Response
     {
         $user = User::findOrFail($id);
-        $submissionRoute = 'admin.users.create';
         return response()->view('admin.users.edit', compact('user'));
     }
 

@@ -11,7 +11,7 @@
                         'submissionRoute' => route('admin.badges.store'),
                         'submissionMethod' => 'POST',
                         'submissionText' => 'Create',
-                        'badge' => null
+                        'badge' => new App\Badge
                     ])
                 </div>
             </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Web\Admin;
 
+use App\Services\ImageProcessingService;
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 use App\Badge;
@@ -24,9 +25,9 @@ class BadgesController extends AdminController
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(): Response
     {
-        //
+        return response()->view('admin.badges.create');
     }
 
     /**
@@ -35,9 +36,25 @@ class BadgesController extends AdminController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request): Response
     {
-        //
+        $x = $request->input('photo_crop_x');
+        $y = $request->input('photo_crop_y');
+        $wh = $request->input('photo_crop_w');
+
+        $this->validate($request, Badge::getValidationRules(Badge::VALIDATION_CREATE));
+        $image = ImageProcessingService::processImage($request->input('photo'), $x, $y, $wh);
+        if(!$image) {
+            App::abort(500, "Something went wrong.");
+        }
+        session()->flash('message', $request->input('title').' badge successfully created.');
+        Badge::create([
+            'image_id' => $image->id,
+            'title' => $request->input('title'),
+            'description' => $request->input('description'),
+            'stand_alone' => $request->input('stand_alone')
+        ]);
+        return response(null, 302)->header('Location', route('admin.badges.index'));
     }
 
     /**
@@ -46,9 +63,9 @@ class BadgesController extends AdminController
      * @param  \App\Badge  $badge
      * @return \Illuminate\Http\Response
      */
-    public function show(Badge $badge)
+    public function show(Badge $badge): Response
     {
-        //
+        return response()->view('admin.badges.show', compact('badge'));
     }
 
     /**
@@ -69,9 +86,9 @@ class BadgesController extends AdminController
      * @param  \App\Badge  $badge
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Badge $badge)
+    public function update(Request $request, Badge $badge): Response
     {
-        //
+        return response()->view('admin.badges.edit', compact('badge'));
     }
 
     /**
@@ -80,8 +97,10 @@ class BadgesController extends AdminController
      * @param  \App\Badge  $badge
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Badge $badge)
+    public function destroy(Badge $badge): Response
     {
-        //
+        $badge->destroy();
+        session()->flash('message', $badge->title.' badge successfully deleted.');
+        return response(null, 302)->header('Location', route('admin.badges.index'));
     }
 }
