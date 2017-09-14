@@ -1,7 +1,6 @@
 #!/bin/bash
 
-cd $(dirname $(readlink -f $0))
-cd ..
+cd $(dirname $0)/..
 
 composer install
 npm install
@@ -10,3 +9,4 @@ php artisan key:generate
 php artisan storage:link
 touch database/database.sqlite
 php artisan migrate:fresh --seed
+npm run dev
