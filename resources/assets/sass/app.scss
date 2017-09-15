@@ -94,6 +94,10 @@ li.list-container {
     text-align: center;
 }
 
+.standard-margin-bottom {
+    margin-bottom: $standard-margin;
+}
+
 .home_background {
     position:absolute;
     top:51px;
@@ -126,8 +130,12 @@ li.list-container {
     @include rounded_corners($rounded-corner-radius);
 }
 
-.table-users tr > td > a, .table-users tr > td > form > a {
-    line-height: 100px;
+.table-users, .table-badges {
+    tr > td {
+        > a, > form > a {
+           line-height: 100px;
+       }
+    }
 }
 
 a.fa-plus {

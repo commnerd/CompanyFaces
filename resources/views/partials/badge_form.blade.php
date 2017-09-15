@@ -7,7 +7,7 @@
     @include('partials.photo_input', ['model' => $badge])
 
     <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
-        <label for="title" class="col-md-4 control-label">title</label>
+        <label for="title" class="col-md-4 control-label">Title</label>
 
         <div class="col-md-6">
             <input id="title" type="text" class="form-control" name="title" value="{{ old('title', $badge->title) }}">
@@ -20,10 +20,15 @@
         </div>
     </div>
 
-    <div class="checkbox">
-        <label>
-          <input type="checkbox" name="stand_alone"> Stand Alone
-        </label>
+    <div class="form-group">
+        <div class="col-md-offset-4 col-md-6">
+            <h3>Badge Settings</h3>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="stand_alone" {{ $badge->stand_alone ? 'checked' : '' }}> Stand Alone (Only one owner at a time)
+                </label>
+            </div>
+        </div>
     </div>
 
     <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">

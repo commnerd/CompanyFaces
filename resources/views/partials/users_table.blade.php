@@ -28,7 +28,7 @@
                     @if(Auth::user() && Auth::user()->superuser)
                     <td class="actions center">
                         <a href="{{ route('admin.users.edit', ['user' => $user]) }}" class="fa fa-pencil-square-o fa-2x"></a>
-                        @include('partials.delete_link', ['context' => 'user', 'entity' => $user])
+                        @include('partials.delete_link', ['context' => 'users', 'entity' => $user])
                     </td>
                     @endif
                 </tr>
