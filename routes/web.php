@@ -20,6 +20,8 @@ Route::namespace('Web')->group(function() {
 
     Route::namespace('Admin')->prefix('admin')->group(function () {
         Route::get('/', 'AdminController@index')->name('admin.index');
+        Route::get('/users/{user}/badges', 'BadgeUserController@assign')->name('admin.badges.assign');
+        Route::post('/users/{user}/badges', 'BadgeUserController@save')->name('admin.badges.save');
         Route::resource('users', 'UsersController', ['names' => [
             'index' => 'admin.users.index',
             'store' => 'admin.users.store',

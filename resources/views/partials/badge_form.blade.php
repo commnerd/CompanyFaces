@@ -1,5 +1,5 @@
 <form class="form-horizontal" role="form" method="POST" action="{{ $submissionRoute }}" enctype="multipart/form-data">
-    @if(!in_array(strtoupper($submissionMethod), ['GET', 'POST']))
+    @if(strtoupper($submissionMethod) !== POST')
         {{ method_field($submissionMethod) }}
     @endif
     {{ csrf_field() }}

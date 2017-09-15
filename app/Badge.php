@@ -2,9 +2,11 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Model;
 use App\Image;
+use App\User;
 
 class Badge extends Model
 {
@@ -65,5 +67,14 @@ class Badge extends Model
      */
     public function photo(): BelongsTo {
         return $this->belongsTo(Image::class, 'image_id');
+    }
+
+    /**
+     * Get badges' users
+     *
+     * @return BelongsToMany Users
+     */
+    public function users(): BelongsToMany {
+        return $this->belongsTo(User::class);
     }
 }

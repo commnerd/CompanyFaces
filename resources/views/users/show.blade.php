@@ -3,7 +3,12 @@
 @section('content')
 <header class="row-fluid">
     <div>
-        <h1 class="col-xs-12 center">{{ $user->name }}</h1>
+        <h1 class="col-xs-12 center">
+            {{ $user->name }}
+            @if(NULL !== Auth::user() && Auth::user()->superuser)
+                <a href="{{ route('admin.badges.assign', ['user' => $user]) }}" class="fa fa-bookmark-o" aria-hidden="true" title="Manage Badges"></a>
+            @endif
+        </h1>
     </div>
 </header>
 <section class="row-fluid">

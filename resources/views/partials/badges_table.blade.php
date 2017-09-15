@@ -3,13 +3,14 @@
     <table class="table table-striped table-badges">
         <thead>
             <tr>
+                <th class="center">Assigned</th>
                 <th>
                     Photo
                 </th>
                 <th>
                     Title
                 </th>
-                @if(Auth::user() && Auth::user()->superuser)
+                @if(Auth::user() && Auth::user()->superuser && $context === NULL)
                 <th class="center">
                     Actions
                 </th>
@@ -19,13 +20,16 @@
         <tbody>
             @foreach($badges as $badge)
                 <tr class="list-container">
+                    <td class="center">
+                        <input type="checkbox" name="badge[{{ $badge->id }}]" {{ $user->hasBadge($badge) ? 'checked' : ''}} />
+                    </td>
                     <td>
                         <img src="{{ $badge->photo->variant('mini')->url }}" />
                     </td>
                     <td>
                         <a href="{{route('badges.show', ['badge' => $badge])}}">{{ $badge->title }}</a>
                     </td>
-                    @if(Auth::user() && Auth::user()->superuser)
+                    @if(Auth::user() && Auth::user()->superuser && $context === NULL)
                     <td class="actions center">
                         <a href="{{ route('admin.badges.edit', ['badge' => $badge]) }}" aria-hidden="true" class="fa fa-pencil-square-o fa-2x"></a>
                         @include('partials.delete_link', ['context' => 'badges', 'entity' => $badge])

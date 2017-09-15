@@ -16249,10 +16249,6 @@ ul {
   list-style: none;
 }
 
-li.list-container > * {
-  margin-left: 170px;
-}
-
 li.list-container {
   height: 150px;
 }
@@ -16260,6 +16256,22 @@ li.list-container {
 li.list-container img {
   position: absolute;
   margin: 0;
+}
+
+li.list-container > * {
+  margin-left: 170px;
+}
+
+.table > tbody > tr.list-container > td {
+  vertical-align: middle;
+}
+
+.table > tbody > tr.list-container > td input[type=checkbox] {
+  transform: scale(2);
+  -ms-transform: scale(2);
+  -webkit-transform: scale(2);
+  -o-transform: scale(2);
+  -moz-transform: scale(2);
 }
 
 .float-left {
@@ -16348,22 +16360,22 @@ li.list-container img {
   line-height: 100px;
 }
 
-td.actions a.fa {
+a.fa {
   margin: 0 10px;
   text-decoration: none;
 }
 
-td.actions a.fa.fa-plus,
-td.actions a.fa.fa-bookmark-o {
+a.fa.fa-plus,
+a.fa.fa-bookmark-o {
   color: #468847;
 }
 
-td.actions a.fa.fa-times {
+a.fa.fa-times {
   margin-left: 2px;
   color: #D14;
 }
 
-td.actions a.fa.fa-pencil-square-o {
+a.fa.fa-pencil-square-o {
   color: #3A87AD;
 }
 

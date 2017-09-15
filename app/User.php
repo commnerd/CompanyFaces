@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -9,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Notifications\Notifiable;
+use App\Badge;
 
 class User extends Authenticatable
 {
@@ -137,12 +139,36 @@ class User extends Authenticatable
     }
 
     /**
+     * Get user's badges
+     *
+     * @return BelongsToMany Badges
+     */
+    public function badges(): BelongsToMany {
+        return $this->belongsToMany(Badge::class);
+    }
+
+    /**
      * Get user's reports
      *
      * @return HasMany Reports
      */
     public function reports(): HasMany {
         return $this->hasMany(User::class, 'supervisor_user_id');
+    }
+
+    /**
+     * Supervisor attribute
+     *
+     * @param App\Badge Badge to check user assignment
+     * @return bool Badge assigned
+     */
+    public function hasBadge(Badge $badge): bool {
+        foreach($this->badges() as $assignedBadge) {
+            if($badge->id === $assignedBadge->id) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**

@@ -42,16 +42,23 @@ ul {
     list-style: none;
 }
 
-li.list-container > * {
-    margin-left: $search-dimension + $standard-margin;
-}
-
 li.list-container {
     height: $search-dimension;
 
     img {
         position: absolute;
         margin: 0;
+    }
+
+    > * {
+        margin-left: $search-dimension + $standard-margin;
+    }
+}
+
+.table > tbody > tr.list-container > td {
+    vertical-align: middle;
+    input[type=checkbox] {
+        @include transform(scale(2));
     }
 }
 
@@ -134,7 +141,7 @@ li.list-container {
     }
 }
 
-td.actions a.fa {
+a.fa {
     margin: 0 $standard-link-margin;
     text-decoration: none;
     &.fa-plus, &.fa-bookmark-o {
