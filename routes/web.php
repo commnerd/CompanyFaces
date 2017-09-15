@@ -14,7 +14,7 @@
 Auth::routes();
 Route::namespace('Web')->group(function() {
     Route::get('/', 'HomeController@index')->name('home');
-    Route::get('/search', 'SearchController@list')->name('search');
+    Route::get('/search', 'UsersController@search')->name('users.search');
     Route::get('/users/{id}', 'UsersController@show')->name('users.show');
     Route::resource('badges', 'BadgesController')->only('show');
 
@@ -24,19 +24,17 @@ Route::namespace('Web')->group(function() {
             'index' => 'admin.users.index',
             'store' => 'admin.users.store',
             'destroy' => 'admin.users.destroy',
-            'show' => 'admin.users.show',
             'edit' => 'admin.users.edit',
             'update' => 'admin.users.update',
             'create' => 'admin.users.create',
-        ]]);
+        ]])->except(['show']);
         Route::resource('badges', 'BadgesController', ['names' => [
             'index' => 'admin.badges.index',
             'store' => 'admin.badges.store',
             'destroy' => 'admin.badges.destroy',
-            'show' => 'admin.badges.show',
             'edit' => 'admin.badges.edit',
             'update' => 'admin.badges.update',
             'create' => 'admin.badges.create',
-        ]]);
+        ]])->except(['show']);
     });
 });

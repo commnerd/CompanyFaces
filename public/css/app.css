@@ -16249,14 +16249,6 @@ ul {
   list-style: none;
 }
 
-td.actions * {
-  display: inline;
-}
-
-td.actions * a {
-  margin: 0 10px;
-}
-
 li.list-container > * {
   margin-left: 170px;
 }
@@ -16344,6 +16336,11 @@ li.list-container img {
   -webkit-border-radius: 4px;
 }
 
+.table-users tr > td > form,
+.table-badges tr > td > form {
+  display: inline;
+}
+
 .table-users tr > td > a,
 .table-users tr > td > form > a,
 .table-badges tr > td > a,
@@ -16351,18 +16348,22 @@ li.list-container img {
   line-height: 100px;
 }
 
-a.fa-plus {
+td.actions a.fa {
+  margin: 0 10px;
   text-decoration: none;
+}
+
+td.actions a.fa.fa-plus,
+td.actions a.fa.fa-bookmark-o {
   color: #468847;
 }
 
-a.fa-times {
-  text-decoration: none;
+td.actions a.fa.fa-times {
+  margin-left: 2px;
   color: #D14;
 }
 
-a.fa-pencil-square-o {
-  text-decoration: none;
+td.actions a.fa.fa-pencil-square-o {
   color: #3A87AD;
 }
 

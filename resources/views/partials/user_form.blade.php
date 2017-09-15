@@ -39,7 +39,7 @@
         <label for="supervisor" class="col-md-4 control-label">Supervisor</label>
 
         <div class="col-md-6">
-            <input id="supervisor" type="text" class="form-control" name="supervisor" value="{{ old('supervisor', isset($user->supervisor) ? $user->supervisor->supervisorLabel : '') }}" source="{{ route('search.users') }}">
+            <input id="supervisor" type="text" class="form-control" name="supervisor" value="{{ old('supervisor', isset($user->supervisor) ? $user->supervisor->supervisorLabel : '') }}" source="{{ route('search.user') }}">
             @if ($errors->has('supervisor'))
                 <span class="help-block">
                     <strong>{{ $errors->first('supervisor') }}</strong>

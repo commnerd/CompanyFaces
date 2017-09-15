@@ -27,7 +27,7 @@
                     </td>
                     @if(Auth::user() && Auth::user()->superuser)
                     <td class="actions center">
-                        <a href="{{ route('admin.badges.edit', ['badge' => $badge]) }}" class="fa fa-pencil-square-o fa-2x"></a>
+                        <a href="{{ route('admin.badges.edit', ['badge' => $badge]) }}" aria-hidden="true" class="fa fa-pencil-square-o fa-2x"></a>
                         @include('partials.delete_link', ['context' => 'badges', 'entity' => $badge])
                     </td>
                     @endif

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<form class="search-form clearfix" action="{{ route('search') }}" method="get">
+<form class="search-form clearfix" action="{{ route('users.search') }}" method="get">
     <div class="panel panel-default">
         <div class="panel-heading">Search</div>
         <div class="panel-body">

@@ -42,13 +42,6 @@ ul {
     list-style: none;
 }
 
-td.actions * {
-    display:inline;
-    a {
-        margin: 0 $standard-link-margin;
-    }
-}
-
 li.list-container > * {
     margin-left: $search-dimension + $standard-margin;
 }
@@ -132,25 +125,28 @@ li.list-container {
 
 .table-users, .table-badges {
     tr > td {
+        > form {
+            display: inline;
+        }
         > a, > form > a {
            line-height: 100px;
        }
     }
 }
 
-a.fa-plus {
+td.actions a.fa {
+    margin: 0 $standard-link-margin;
     text-decoration: none;
-    color: $add-color;
-}
-
-a.fa-times {
-    text-decoration: none;
-    color: $delete-color;
-}
-
-a.fa-pencil-square-o {
-    text-decoration: none;
-    color: $edit-color;
+    &.fa-plus, &.fa-bookmark-o {
+        color: $add-color;
+    }
+    &.fa-times {
+        margin-left: $standard-link-margin - 8px;
+        color: $delete-color;
+    }
+    &.fa-pencil-square-o {
+        color: $edit-color;
+    }
 }
 
 @media (min-width: $screen-sm-min) {
