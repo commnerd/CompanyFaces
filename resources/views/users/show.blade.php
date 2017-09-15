@@ -23,6 +23,9 @@
 <section class="row-fluid">
     <div class="col-xs-12 tabs">
         <ul>
+            @if($user->badges !== NULL)
+                <li><a href="#badges">Badges</a></li>
+            @endif
             @if($user->supervisor !== NULL)
                 <li><a href="#supervisors">Supervisor Chain</a></li>
             @endif
@@ -30,6 +33,17 @@
                 <li><a href="#reports">Reports</a></li>
             @endif
         </ul>
+        <div id="badges">
+            @if($user->reports === NULL)
+                <h3>This person has no badges.</h3>
+            @else
+                    @foreach($user->badges as $badge)
+                        <a href="{{ route('badges.show', ['badge' => $badge]) }}">
+                            <img src="{{ $badge->photo->variant('profile')->url }}">
+                        </a>
+                    @endforeach
+            @endif
+        </div>
         <div id="supervisors">
             @if($user->supervisor !== NULL)
                     @for(

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBadgeUserTable extends Migration
+class CreateBadgeUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateBadgeUserTable extends Migration
      */
     public function up()
     {
-        Schema::create('badge_user', function (Blueprint $table) {
+        Schema::create('badge_users', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('badge_id')->unsigned();
             $table->foreign('badge_id')->references('id')->on('badges');

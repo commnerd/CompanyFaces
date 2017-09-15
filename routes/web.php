@@ -15,7 +15,7 @@ Auth::routes();
 Route::namespace('Web')->group(function() {
     Route::get('/', 'HomeController@index')->name('home');
     Route::get('/search', 'UsersController@search')->name('users.search');
-    Route::get('/users/{id}', 'UsersController@show')->name('users.show');
+    Route::get('/users/{user}', 'UsersController@show')->name('users.show');
     Route::resource('badges', 'BadgesController')->only('show');
 
     Route::namespace('Admin')->prefix('admin')->group(function () {

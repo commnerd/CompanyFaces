@@ -12,7 +12,7 @@
                         'submissionRoute' => route('admin.badges.save', ['user' => $user ]),
                         'submissionText' => 'Update',
                         'submissionMethod' => 'POST',
-                        'badges' => $badges
+                        'badges' => $badges ?? []
                     ])
                 </div>
             </div>

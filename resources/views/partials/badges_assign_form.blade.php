@@ -3,6 +3,7 @@
         {{ method_field($submissionMethod) }}
     @endif
     {{ csrf_field() }}
+    <input type="hidden" name="presentedBadges" value="{{ $presentedBadges }}" />
     @include('partials.badges_table', ['badges' => $badges, 'user' => $user, 'context' => 'form'])
     <div class="form-group">
         <div class="col-md-6 col-md-offset-4">

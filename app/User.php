@@ -144,7 +144,7 @@ class User extends Authenticatable
      * @return BelongsToMany Badges
      */
     public function badges(): BelongsToMany {
-        return $this->belongsToMany(Badge::class);
+        return $this->belongsToMany(Badge::class, 'badge_users');
     }
 
     /**
@@ -163,7 +163,7 @@ class User extends Authenticatable
      * @return bool Badge assigned
      */
     public function hasBadge(Badge $badge): bool {
-        foreach($this->badges() as $assignedBadge) {
+        foreach($this->badges as $assignedBadge) {
             if($badge->id === $assignedBadge->id) {
                 return true;
             }

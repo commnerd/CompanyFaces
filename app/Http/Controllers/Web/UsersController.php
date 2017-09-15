@@ -24,9 +24,8 @@ class UsersController extends WebController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id): Response
+    public function show(User $user): Response
     {
-        $user = User::findOrFail($id);
         return response()->view('users.show', compact('user'));
     }
 }
