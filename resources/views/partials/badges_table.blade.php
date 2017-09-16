@@ -33,7 +33,7 @@
                     <td>
                         <a href="{{route('badges.show', ['badge' => $badge])}}">{{ $badge->title }}</a>
                     </td>
-                    @if(Auth::user() && Auth::user()->superuser && isset($context) && $context === NULL)
+                    @if(Auth::user() && Auth::user()->superuser && !isset($context) || $context !== 'form')
                     <td class="actions center">
                         <a href="{{ route('admin.badges.edit', ['badge' => $badge]) }}" aria-hidden="true" class="fa fa-pencil-square-o fa-2x"></a>
                         @include('partials.delete_link', ['context' => 'badges', 'entity' => $badge])

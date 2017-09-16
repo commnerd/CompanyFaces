@@ -82,11 +82,13 @@
             </div>
         </nav>
 
-        @if(Session::get('message'))
-        <div class="center bg-success message col-xs-6 col-xs-offset-3">
-            {{ Session::get('message')}}
-        </div>
-        @endif
+        @foreach(['success', 'warning'] as $messageType)
+            @if(Session::get($messageType))
+            <div class="center bg-{{ $messageType }} message col-xs-6 col-xs-offset-3">
+                {{ Session::get($messageType)}}
+            </div>
+            @endif
+        @endforeach
 
         @yield('content')
     </div>

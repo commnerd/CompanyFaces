@@ -12,6 +12,10 @@ class BadgeUserController extends AdminController
 {
     public function assign(User $user): Response {
         $badges = Badge::paginate(15);
+        if($badges->count() === 0) {
+            session()->flash('warning', 'No badges available to assign, please create one.');
+            return response(null, 302)->header('Location', route('admin.badges.create'));
+        }
         $presentedBadges = [];
         $user->hasBadge($badges[0]);
         foreach($badges as $badge) {
@@ -31,6 +35,7 @@ class BadgeUserController extends AdminController
                 'badge_id' => $badge,
             ]);
         }
+        session()->flash('success', 'Successfully saved badges for '.$user->name.'.');
         return response(null, 302)->header('Location', route('users.show', ['user'=>$user]));
     }
 }

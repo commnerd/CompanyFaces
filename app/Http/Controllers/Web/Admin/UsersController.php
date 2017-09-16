@@ -48,7 +48,6 @@ class UsersController extends AdminController
         if(!$image) {
             App::abort(500, "Something went wrong.");
         }
-        session()->flash('message', $request->input('name').'\'s profile successfully created.');
         User::create([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
@@ -58,6 +57,7 @@ class UsersController extends AdminController
             'password' => bcrypt($request->input('password')),
             'biography' => $request->input('biography'),
         ]);
+        session()->flash('success', $request->input('name').'\'s profile successfully created.');
         return response(null, 302)->header('Location', route('admin.users.index'));
     }
 
@@ -122,7 +122,7 @@ class UsersController extends AdminController
             }
         }
         $user->save();
-        session()->flash('message', $request->input('name').'\'s profile successfully updated.');
+        session()->flash('success', $request->input('name').'\'s profile successfully updated.');
         return response(null, 302)->header('Location', route('admin.users.index'));
     }
 
@@ -138,7 +138,7 @@ class UsersController extends AdminController
         User::linkSubordinatesToSupervisor($user);
         $user = User::findOrFail($id);
         User::destroy($id);
-        session()->flash('message', $user->name.'\'s profile successfully deleted.');
+        session()->flash('success', $user->name.'\'s profile successfully deleted.');
         return response(null, 302)->header('Location', route('admin.users.index'));
     }
 }

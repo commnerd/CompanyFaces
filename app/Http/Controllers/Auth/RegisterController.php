@@ -79,7 +79,7 @@ class RegisterController extends Controller
             $supervisor_id = null;
         }
 
-        session()->flash('message', $data['name'].'\'s profile successfully created.');
+        session()->flash('success', $data['name'].'\'s profile successfully created.');
 
         return User::create([
             'name' => $data['name'],

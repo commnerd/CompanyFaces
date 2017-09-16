@@ -25,7 +25,7 @@ class HomeController extends WebController
      */
     public function index()
     {
-        $users = User::inRandomOrder()->limit(100)->get();
+        $users = User::inRandomOrder()->limit(500)->get();
         return view('search', ['users' => $users]);
     }
 }

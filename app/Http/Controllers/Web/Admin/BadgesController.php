@@ -47,13 +47,13 @@ class BadgesController extends AdminController
         if(!$image) {
             App::abort(500, "Something went wrong.");
         }
-        session()->flash('message', $request->input('title').' badge successfully created.');
         Badge::create([
             'image_id' => $image->id,
             'title' => $request->input('title'),
             'description' => $request->input('description'),
             'stand_alone' => $request->input('stand_alone')
         ]);
+        session()->flash('success', $request->input('title').' badge successfully created.');
         return response(null, 302)->header('Location', route('admin.badges.index'));
     }
 
@@ -88,6 +88,33 @@ class BadgesController extends AdminController
      */
     public function update(Request $request, Badge $badge): Response
     {
+        $image = null;
+
+        $x = $request->input('photo_crop_x');
+        $y = $request->input('photo_crop_y');
+        $wh = $request->input('photo_crop_w');
+
+        $processImage = !empty($x) && !empty($y) && !empty($wh);
+
+        if($processImage) {
+            $image = ImageProcessingService::processImage($request->input('photo'), $x, $y, $wh);
+            if(!$image) {
+                App::abort(500, "Something went wrong.");
+            }
+        }
+        $this->validate($request, Badge::getValidationRules(Badge::VALIDATION_UPDATE, $id));
+
+        if($processImage) {
+            $badge->image_id = $image->id;
+        }
+
+        foreach($badge->toArray() as $field => $value) {
+            if(!empty($request->input($field))) {
+                $badge->{$field} = $request->input($field);
+            }
+        }
+        $badge->save();
+        session()->flash('success', $request->input('title').' badge successfully created.');
         return response()->view('admin.badges.edit', compact('badge'));
     }
 
@@ -100,7 +127,7 @@ class BadgesController extends AdminController
     public function destroy(Badge $badge): Response
     {
         $badge->destroy($badge->id);
-        session()->flash('message', $badge->title.' badge successfully deleted.');
+        session()->flash('success', $badge->title.' successfully deleted.');
         return response(null, 302)->header('Location', route('admin.badges.index'));
     }
 }

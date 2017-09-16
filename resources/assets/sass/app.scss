@@ -78,10 +78,18 @@ li.list-container {
     @include rounded_corners($rounded-corner-radius);
 }
 
-.message.bg-success {
-    border: thin solid green;
-    color: green;
+.message {
+    &.bg-success {
+        border: thin solid green;
+        color: green;
+    }
+
+    &.bg-warning {
+        border: thin solid $border-warning-color;
+        color: $border-warning-color;
+    }
 }
+
 
 .search-form {
     position: relative;
