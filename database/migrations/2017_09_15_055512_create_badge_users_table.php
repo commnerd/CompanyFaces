@@ -30,6 +30,6 @@ class CreateBadgeUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('badge_user');
+        Schema::dropIfExists('badge_users');
     }
 }

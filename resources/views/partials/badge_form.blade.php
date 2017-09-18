@@ -25,7 +25,7 @@
             <h3>Badge Settings</h3>
             <div class="checkbox">
                 <label>
-                    <input type="checkbox" name="stand_alone" {{ $badge->stand_alone ? 'checked' : '' }}> Stand Alone (Only one owner at a time)
+                    <input type="checkbox" name="stand_alone" {{ ($badge && $badge->stand_alone) ? 'checked' : '' }}> Stand Alone (Only one owner at a time)
                 </label>
             </div>
         </div>

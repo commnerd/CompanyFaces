@@ -21,6 +21,18 @@
         </div>
     </div>
 
+    @if(Auth::user() && Auth::user()->superuser)
+        <div class="form-group">
+            <div class="col-md-offset-4 col-md-6">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="superuser" {{ ($user && $user->superuser) ? 'checked' : '' }}> Superuser
+                    </label>
+                </div>
+            </div>
+        </div>
+    @endif
+
     <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
         <label for="email" class="col-md-4 control-label">E-Mail Address</label>
 
@@ -39,7 +51,7 @@
         <label for="supervisor" class="col-md-4 control-label">Supervisor</label>
 
         <div class="col-md-6">
-            <input id="supervisor" type="text" class="form-control" name="supervisor" value="{{ old('supervisor', isset($user->supervisor) ? $user->supervisor->supervisorLabel : '') }}" source="{{ route('search.user') }}">
+            <input id="supervisor" type="text" class="form-control" name="supervisor" value="{{ old('supervisor', isset($user->supervisor) ? $user->supervisor->supervisorLabel : '') }}" source="{{ route('search.users') }}">
             @if ($errors->has('supervisor'))
                 <span class="help-block">
                     <strong>{{ $errors->first('supervisor') }}</strong>

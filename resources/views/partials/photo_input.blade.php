@@ -5,7 +5,7 @@
                 <img src="{{ $model->photo->url }}" />
             @endif
         </div>
-        <input type="hidden" name="photo" value="{{ old('photo', isset($model->photo) ?? $model->photo->name) }}" />
+        <input type="hidden" name="photo" value="{{ old('photo', isset($model->photo) ? $model->photo->name : '') }}" />
         <input type="hidden" name="photo_crop_x" value="{{ old('photo_crop_x') }}" />
         <input type="hidden" name="photo_crop_y" value="{{ old('photo_crop_y') }}" />
         <input type="hidden" name="photo_crop_w" value="{{ old('photo_crop_w') }}" />

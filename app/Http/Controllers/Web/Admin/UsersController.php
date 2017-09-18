@@ -50,6 +50,7 @@ class UsersController extends AdminController
         }
         User::create([
             'name' => $request->input('name'),
+            'superuser' => $request->input('superuser'),
             'email' => $request->input('email'),
             'image_id' => $image->id,
             'supervisor_user_id' => User::supervisorLabelToId($request->input('supervisor')),
@@ -92,7 +93,7 @@ class UsersController extends AdminController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id): Response
+    public function update(Request $request, User $user): Response
     {
         $image = null;
 
@@ -109,20 +110,30 @@ class UsersController extends AdminController
             }
         }
         $passwordSet = !empty($request->input('password')) && !empty($request->input('password_confirmation'));
-        $this->validate($request, User::getValidationRules(User::VALIDATION_UPDATE, $id, $passwordSet));
-        $user = User::where('id', $id)->firstOrFail();
+        $this->validate($request, User::getValidationRules(User::VALIDATION_UPDATE, $user->id, $passwordSet));
 
         if($processImage) {
             $user->image_id = $image->id;
         }
 
-        foreach($user->toArray() as $field => $value) {
-            if(!empty($request->input($field))) {
+        $setArray = $user->getFillable();
+
+        if($passwordSet) {
+            $user->password = $request->input('password');
+        }
+
+        $user->superuser = $request->input('superuser') === "on" ? true : false;
+
+        foreach($user->getFillable() as $field) {
+            if(!in_array($field, ['image_id', 'password', 'superuser'])) {
                 $user->{$field} = $request->input($field);
             }
         }
         $user->save();
         session()->flash('success', $request->input('name').'\'s profile successfully updated.');
+        if(\Auth::user()->id === $user->id) {
+            return response(null, 302)->header('Location', route('home'));
+        }
         return response(null, 302)->header('Location', route('admin.users.index'));
     }
 

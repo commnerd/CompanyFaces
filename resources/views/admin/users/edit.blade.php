@@ -6,11 +6,11 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Edit {{ $user->supervisorLabel }} <a href="{{ route(admin.badges.assign, $user) }}">Manage Badges</a>
+                    Edit {{ $user->supervisorLabel }} <a href="{{ route('admin.badges.assign', ['user' => $user]) }}">Manage Badges</a>
                 </div>
                 <div class="panel-body">
                     @include('partials.user_form', [
-                        'submissionRoute' => route('admin.users.update', $user->id),
+                        'submissionRoute' => route('admin.users.update', ['user' => $user]),
                         'submissionText' => 'Update',
                         'submissionMethod' => 'PUT',
                         'user' => $user
