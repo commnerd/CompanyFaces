@@ -200,6 +200,9 @@ class User extends Authenticatable
         if(isset($nameAndPosition['position'])) {
             $usersQuery = $usersQuery->where('position', $nameAndPosition['position']);
         }
+        else {
+            $usersQuery = $usersQuery->orWhere('position', 'like', '%'.$nameAndPosition['name'].'%');
+        }
         $users = $usersQuery->paginate(15);
         return $users;
     }
@@ -238,13 +241,23 @@ class User extends Authenticatable
      * @return int          ID of supervisor
      */
     public static function supervisorLabelToId(String $label): int {
+        // Return early w/o label
+        if(empty($label)) {
+            return 0;
+        }
         $users = User::getUsersFromSupervisorLabel($label);
+
+        // Return early w/o matches
         if($users->count() < 1) {
             return 0;
         }
+
+        // Return early if more than one match
         if($users->count() > 1) {
             App::abort(500, 'Something went wrong.');
         }
+
+        // Return user ID
         return $users->first()->id;
     }
 

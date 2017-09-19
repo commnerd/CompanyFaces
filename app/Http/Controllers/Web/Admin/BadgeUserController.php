@@ -49,13 +49,14 @@ class BadgeUserController extends AdminController
             ->delete();
 
         // Repopulate selected badges
-        foreach(array_keys($request->input('badges') ?? []) as $badge) {
+        foreach(array_keys($request->input('badges') ?? []) as $badge_id) {
+            $badge = Badge::where('id', $badge_id)->firstOrFail();
             if($badge->stand_alone) {
-                BadgeUser::where('badge_id', $badge)->delete();
+                BadgeUser::where('badge_id', $badge->id)->delete();
             }
             BadgeUser::create([
                 'user_id' => $user->id,
-                'badge_id' => $badge,
+                'badge_id' => $badge->id,
             ]);
         }
 

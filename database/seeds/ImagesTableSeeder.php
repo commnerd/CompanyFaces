@@ -20,5 +20,13 @@ class ImagesTableSeeder extends Seeder
         $image->save();
 
         ImageProcessingService::processImage($image->name, 105, 10, 50);
+
+        $image = new Image();
+        $image->name = 'tmp'.DIRECTORY_SEPARATOR.'1st-place-ribbon.png';
+        $image->url = \Storage::url($image->name);
+        $image->path = \Storage::disk('public')->path($image->name);
+        $image->save();
+
+        ImageProcessingService::processImage($image->name, 0, 0, 250);
     }
 }

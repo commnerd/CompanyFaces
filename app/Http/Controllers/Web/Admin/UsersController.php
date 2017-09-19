@@ -50,10 +50,10 @@ class UsersController extends AdminController
         }
         User::create([
             'name' => $request->input('name'),
-            'superuser' => $request->input('superuser'),
+            'superuser' => $request->input('superuser') ?? false,
             'email' => $request->input('email'),
             'image_id' => $image->id,
-            'supervisor_user_id' => User::supervisorLabelToId($request->input('supervisor')),
+            'supervisor_user_id' => User::supervisorLabelToId($request->input('supervisor') ?? ''),
             'position' => $request->input('position'),
             'password' => bcrypt($request->input('password')),
             'biography' => $request->input('biography'),
