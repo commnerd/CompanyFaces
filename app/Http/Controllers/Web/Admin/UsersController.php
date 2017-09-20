@@ -48,12 +48,13 @@ class UsersController extends AdminController
         if(!$image) {
             App::abort(500, "Something went wrong.");
         }
+
         User::create([
             'name' => $request->input('name'),
             'superuser' => $request->input('superuser') ?? false,
             'email' => $request->input('email'),
             'image_id' => $image->id,
-            'supervisor_user_id' => User::supervisorLabelToId($request->input('supervisor') ?? ''),
+            'supervisor_user_id' => empty($request->input('supervisor')) ? null : User::supervisorLabelToId($request->input('supervisor')),
             'position' => $request->input('position'),
             'password' => bcrypt($request->input('password')),
             'biography' => $request->input('biography'),
@@ -124,8 +125,10 @@ class UsersController extends AdminController
 
         $user->superuser = $request->input('superuser') === "on" ? true : false;
 
+        $user->supervisor_user_id = empty($request->input('supervisor')) ? null : User::supervisorLabelToId($request->input('supervisor'));
+
         foreach($user->getFillable() as $field) {
-            if(!in_array($field, ['image_id', 'password', 'superuser'])) {
+            if(!in_array($field, ['image_id', 'password', 'superuser', 'supervisor_user_id'])) {
                 $user->{$field} = $request->input($field);
             }
         }

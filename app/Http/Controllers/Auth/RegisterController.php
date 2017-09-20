@@ -68,24 +68,13 @@ class RegisterController extends Controller
 
         $image = Image::where('name', $data['photo'])->firstOrFail();
 
-        // Grab supervisor string if available
-        $supervisor = isset($data['supervisor']) ? $data['supervisor'] : '';
-
-        // Translate string to ID
-        $supervisor_id = User::supervisorLabelToId($supervisor);
-
-        // If label translator returns 0, translate ID to null for DB insertion
-        if(empty($supervisor_id)) {
-            $supervisor_id = null;
-        }
-
         session()->flash('success', $data['name'].'\'s profile successfully created.');
 
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'image_id' => $image->id,
-            'supervisor_user_id' => $supervisor_id,
+            'supervisor_user_id' => User::supervisorLabelToId($data['supervisor']),
             'position' => $data['position'],
             'password' => bcrypt($data['password']),
             'biography' => $data['biography'],
