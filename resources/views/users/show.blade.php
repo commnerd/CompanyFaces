@@ -6,6 +6,7 @@
         <h1 class="col-xs-12 center">
             {{ $user->name }}
             @if(NULL !== Auth::user() && Auth::user()->superuser)
+                <a href="{{ route('admin.users.edit', ['user' => $user]) }}" class="fa fa-pencil-square-o" aria-hidden="true" title="Edit"></a>
                 <a href="{{ route('admin.badges.assign', ['user' => $user]) }}" class="fa fa-bookmark-o" aria-hidden="true" title="Manage Badges"></a>
             @endif
         </h1>

@@ -243,7 +243,7 @@ class User extends Authenticatable
     public static function supervisorLabelToId(String $label): int {
         // Return early w/o label
         if(empty($label)) {
-            return null;
+            return 0;
         }
         $users = User::getUsersFromSupervisorLabel($label);
 
