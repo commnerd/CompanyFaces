@@ -38,5 +38,8 @@ Route::namespace('Web')->group(function() {
             'update' => 'admin.badges.update',
             'create' => 'admin.badges.create',
         ]])->except(['show']);
+        Route::resource('settings', 'SettingController', ['names' => [
+            'store' => 'admin.settings.store',
+        ]])->only(['store']);
     });
 });

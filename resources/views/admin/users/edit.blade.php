@@ -6,7 +6,10 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Edit {{ $user->supervisorLabel }} <a href="{{ route('admin.badges.assign', ['user' => $user]) }}">Manage Badges</a>
+                    Edit {{ $user->supervisorLabel }}
+                    @if(Setting::show('badges'))
+                        <a href="{{ route('admin.badges.assign', ['user' => $user]) }}">Manage Badges</a>
+                    @endif
                 </div>
                 <div class="panel-body">
                     @include('partials.user_form', [

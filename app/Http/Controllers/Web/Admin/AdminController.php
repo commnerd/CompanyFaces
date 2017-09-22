@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web\Admin;
 
 use App\Http\Controllers\Web\WebController;
 use Illuminate\Support\Facades\Auth;
+use \App\Setting;
 
 class AdminController extends WebController
 {
@@ -18,7 +19,8 @@ class AdminController extends WebController
      */
     public function index()
     {
-        return view('admin.index');
+        $settings = Setting::all();
+        return view('admin.index', compact('settings'));
     }
 
 /*
