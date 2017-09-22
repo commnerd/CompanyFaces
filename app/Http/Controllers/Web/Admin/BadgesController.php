@@ -9,6 +9,11 @@ use App\Badge;
 
 class BadgesController extends AdminController
 {
+    public function __construct() {
+        parent::__construct();
+
+        $this->middleware('setting');
+    }
     /**
      * Display a listing of the resource.
      *
