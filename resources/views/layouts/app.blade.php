@@ -35,10 +35,16 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
+                    <a class="navbar-brand" href="{{ route('home') }}">
                         {{ config('app.name', 'Laravel') }}
                     </a>
                 </div>
+
+                @if(Setting::show('game'))
+                    <a href="{{ route('game.index') }}" class="navbar">
+                        Play Game
+                    </a>
+                @endif
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->

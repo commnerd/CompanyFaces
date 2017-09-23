@@ -31,6 +31,7 @@ class Setting
             }
         }
 
+        \Session::flash('warning', 'This feature is not enabled.');
         return redirect()->back();
     }
 }
