@@ -36,7 +36,7 @@ class GameController extends WebController
                 $msgType = 'warning';
             }
             \Session::forget('game');
-            \Session::put($msgType, "You got $score out of ".$count.".");
+            \Session::flash($msgType, "You got $score out of ".$count.".");
             return response(null, 302)->header('Location', route('home'));
         }
 
