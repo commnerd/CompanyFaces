@@ -86,6 +86,11 @@ li.list-container {
         border: thin solid $border-warning-color;
         color: $border-warning-color;
     }
+
+    &.bg-danger {
+        border: thin solid $border-danger-color;
+        color: $border-danger-color;
+    }
 }
 
 .search-form {

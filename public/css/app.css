@@ -16302,6 +16302,11 @@ li.list-container > * {
   color: #8a6d3b;
 }
 
+.message.bg-danger {
+  border: thin solid #a94442;
+  color: #a94442;
+}
+
 .search-form {
   position: relative;
   width: 50%;
