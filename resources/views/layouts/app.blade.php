@@ -40,16 +40,17 @@
                     </a>
                 </div>
 
-                @if(Setting::show('game'))
-                    <a href="{{ route('game.index') }}" class="navbar">
-                        Play Game
-                    </a>
-                @endif
-
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        &nbsp;
+                        @if(Setting::show('game'))
+                        <li>
+                            <a href="{{ route('game.index') }}">
+                                Play Game
+                            </a>
+                        </li>
+                        @endif
+
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -87,7 +88,7 @@
             </div>
         </nav>
 
-        @foreach(['success', 'warning'] as $messageType)
+        @foreach(['success', 'warning', 'danger'] as $messageType)
             @if(Session::get($messageType))
             <div class="center bg-{{ $messageType }} message col-xs-6 col-xs-offset-3">
                 {{ Session::get($messageType)}}

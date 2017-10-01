@@ -16,10 +16,8 @@ class Game
      */
     public function handle($request, Closure $next)
     {
-        return $next($request);
-
-        if(Setting::show('game') && \Session::has('game')) {
-            return response(null, 302)->header('Location', route('game.index'));
+        if(Setting::show('game') && \Session::has('game') && $request->path() !== 'game') {
+            return redirect()->back();
         }
         return $next($request);
     }

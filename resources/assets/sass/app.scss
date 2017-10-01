@@ -72,7 +72,7 @@ li.list-container {
 
 .message {
     position: absolute;
-    z-index: 1;
+    z-index: 2;
     padding: $standard-padding;
     margin-bottom: $standard-margin;
     @include rounded_corners($rounded-corner-radius);

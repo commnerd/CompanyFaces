@@ -12,16 +12,19 @@
     <div class="col-xs-12 col-sm-4 center">
         <img src="{{ $user->photo->variant('profile')->url }}">
     </div>
-    <div class="col-xs-12 col-sm-8">
-        <ul>
-            @foreach($names as $name)
-            <li>
-                <label>
-                    <input type="radio" name="guess"> {{ $name }}
-                </label>
-            </li>
-            @endforeach
-        </ul>
-    </div>
+    <form class="" action="{{ route('game.store') }}" method="post">
+        {{ csrf_field() }}
+        <div class="col-xs-12 col-sm-8">
+            <ul>
+                @foreach($names as $name)
+                <li>
+                    <label>
+                        <input type="radio" name="name" value="{{ $name }}" onclick="javascript:submit()"> {{ $name }}
+                    </label>
+                </li>
+                @endforeach
+            </ul>
+        </div>
+    </form>
 </section>
 @endsection
