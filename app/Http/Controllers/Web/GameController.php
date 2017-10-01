@@ -17,7 +17,7 @@ class GameController extends WebController
     {
         if(!\Session::has('game')) {
             $game = [
-                'users' => User::inRandomOrder()->limit(2)->get(),
+                'users' => User::inRandomOrder()->limit(10)->get(),
                 'names' => []
             ];
             \Session::put('game', $game);
